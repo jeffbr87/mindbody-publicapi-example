@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PublicApiApp.ClientService;
+using PublicApiApp.Exceptions;
 using PublicApiApp.Services;
 
 namespace PublicApiApp.Repositories
@@ -25,7 +26,7 @@ namespace PublicApiApp.Repositories
 
             if (result.Status != StatusCode.Success)
             {
-                throw new Exception(result.Message);
+                throw new ApiException(result);
             }
 
             return result.ClientServices;
@@ -49,7 +50,7 @@ namespace PublicApiApp.Repositories
 
             if (result.Status != StatusCode.Success)
             {
-                throw new Exception(result.Message);
+                throw new ApiException(result);
             }
 
             return result.Visits;
