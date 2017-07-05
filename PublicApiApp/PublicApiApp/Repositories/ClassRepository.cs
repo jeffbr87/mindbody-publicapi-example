@@ -17,12 +17,19 @@ namespace PublicApiApp.Repositories
             {
                 SourceCredentials = classService.GetSourceCredentials(),
                 UserCredentials = classService.GetOwnerCredentials(),
-                XMLDetail = XMLDetailLevel.Full
+                XMLDetail = XMLDetailLevel.Full,
+                StartDateTime = startDate,
+                EndDateTime = endDate
             };
 
             var getClassesResults = classService.GetClasses(getClassesRequest);
 
-            throw new NotImplementedException();
+            if (getClassesResults.ErrorCode == 200)
+            {
+                return getClassesResults.Classes;
+            }
+
+            return null;
         }
 
         public void AddClientToClass(string clientId, int classInstanceId, int? pricingOptionId)
