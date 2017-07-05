@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PublicApiApp.ClientService;
+using PublicApiApp.Services;
 
 namespace PublicApiApp.Repositories
 {
@@ -19,9 +18,28 @@ namespace PublicApiApp.Repositories
             throw new NotImplementedException();
         }
 
-        public string AddOrUpdateClients(Client client, bool isUpdate)
+        public string AddOrUpdateClients(Client client)
         {
-            throw new NotImplementedException();
+            var clientService = ClientServiceWrapper.GetClientService();
+            
+            var request = new AddOrUpdateClientsRequest
+            {
+                Clients = new[] {client},
+                SendEmail = client.ID == null,
+                UserCredentials = clientService.GetOwnerCredentials(),
+                SourceCredentials = clientService.GetSourceCredentials()
+            };
+
+            var response = clientService.AddOrUpdateClients(request);
+
+            if (response.ErrorCode == 200)
+            {
+                return response.Clients.Single().ID;
+            }
+            else
+            {
+                throw new Exception();
+            }
         }
 
         public IList<Client> GetClients()
