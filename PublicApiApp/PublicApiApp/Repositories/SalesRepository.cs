@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PublicApiApp.SaleService;
+using PublicApiApp.Services;
 
 namespace PublicApiApp.Repositories
 {
@@ -11,7 +12,16 @@ namespace PublicApiApp.Repositories
     {
         public IList<Sale> GetSales(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            var salesService = SaleServiceWrapper.GetSaleService();
+            var getSalesRequest = new GetSalesRequest
+            {
+                SourceCredentials = salesService.GetSourceCredentials(),
+                UserCredentials = salesService.GetOwnerCredentials(),
+                XMLDetail = XMLDetailLevel.Full
+            };
+
+            var salesResult = salesService.GetSales(getSalesRequest);
+            return salesResult.Sales;
         }
     }
 }
