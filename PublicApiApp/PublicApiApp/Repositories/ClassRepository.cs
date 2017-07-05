@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PublicApiApp.ClassService;
+using PublicApiApp.Exceptions;
 using PublicApiApp.Services;
 
 namespace PublicApiApp.Repositories
@@ -30,10 +31,32 @@ namespace PublicApiApp.Repositories
             return null;
         }
 
+        /// <summary>
+        /// Adds a client to a class
+        /// </summary>
+        /// <remarks>Waitlists are not currently supported</remarks>
+        /// <param name="clientId"></param>
+        /// <param name="classInstanceId"></param>
+        /// <param name="pricingOptionId"></param>
         public void AddClientToClass(string clientId, int classInstanceId, int? pricingOptionId)
         {
-            // No waitlisting
-            throw new NotImplementedException();
+            var request = new AddClientsToClassesRequest
+            {
+                ClassIDs = new[] {classInstanceId},
+                ClientIDs = new[] {clientId},
+                ClientServiceID = pricingOptionId
+            };
+
+            AddClientsToClassesResult result;
+            using (var service = ClassServiceWrapper.GetClassService())
+            {
+                result = service.AddClientsToClasses(request);
+            }
+
+            if (result.Status != StatusCode.Success)
+            {
+                throw new ApiException(result);
+            }
         }
     }
 }
