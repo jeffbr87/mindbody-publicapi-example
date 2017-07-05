@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PublicApiApp.ClassService;
 using PublicApiApp.Services;
 
@@ -10,7 +7,7 @@ namespace PublicApiApp.Repositories
 {
     public class ClassRepository
     {
-        public IList<Class> GetClasses(DateTime startDate, DateTime endDate)
+        public IList<Class> GetClasses(string clientId, DateTime startDate, DateTime endDate)
         {
             var classService = ClassServiceWrapper.GetClassService();
             var getClassesRequest = new GetClassesRequest
@@ -19,7 +16,8 @@ namespace PublicApiApp.Repositories
                 UserCredentials = classService.GetOwnerCredentials(),
                 XMLDetail = XMLDetailLevel.Full,
                 StartDateTime = startDate,
-                EndDateTime = endDate
+                EndDateTime = endDate,
+                ClientID = clientId
             };
 
             var getClassesResults = classService.GetClasses(getClassesRequest);
