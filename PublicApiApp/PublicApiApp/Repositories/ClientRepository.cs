@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using PublicApiApp.ClientService;
+using PublicApiApp.Exceptions;
 using PublicApiApp.Services;
 
 namespace PublicApiApp.Repositories
@@ -32,14 +33,12 @@ namespace PublicApiApp.Repositories
 
             var response = clientService.AddOrUpdateClients(request);
 
-            if (response.ErrorCode == 200)
+            if (response.ErrorCode != 200)
             {
-                return response.Clients.Single().ID;
+                throw new ApiException(response);
             }
-            else
-            {
-                throw new Exception();
-            }
+
+            return response.Clients.Single().ID;
         }
 
         public IList<Client> GetClients()
