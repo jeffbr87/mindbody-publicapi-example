@@ -33,34 +33,31 @@
             this.clientList = new System.Windows.Forms.ListView();
             this.studioName = new System.Windows.Forms.Label();
             this.clientsLabel = new System.Windows.Forms.Label();
-            this.classesLabel = new System.Windows.Forms.Label();
-            this.classList = new System.Windows.Forms.ListView();
             this.addClientToClass = new System.Windows.Forms.Button();
-            this.getSales = new System.Windows.Forms.Button();
             this.updateClient = new System.Windows.Forms.Button();
             this.getClientSchedule = new System.Windows.Forms.Button();
             this.withSelectedClientLabel = new System.Windows.Forms.Label();
             this.andSelectedClassLabel = new System.Windows.Forms.Label();
             this.getClientsAndClasses = new System.Windows.Forms.Button();
-            this.getClientServices = new System.Windows.Forms.Button();
             this.enso = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.enso)).BeginInit();
             this.SuspendLayout();
             // 
             // addClient
             // 
-            this.addClient.Location = new System.Drawing.Point(457, 155);
+            this.addClient.Location = new System.Drawing.Point(457, 110);
             this.addClient.Name = "addClient";
             this.addClient.Size = new System.Drawing.Size(196, 23);
             this.addClient.TabIndex = 0;
             this.addClient.Text = "Add a Client";
             this.addClient.UseVisualStyleBackColor = true;
+            this.addClient.Click += new System.EventHandler(this.addClient_Click);
             // 
             // clientList
             // 
             this.clientList.Location = new System.Drawing.Point(12, 72);
             this.clientList.Name = "clientList";
-            this.clientList.Size = new System.Drawing.Size(196, 253);
+            this.clientList.Size = new System.Drawing.Size(439, 253);
             this.clientList.TabIndex = 1;
             this.clientList.UseCompatibleStateImageBehavior = false;
             // 
@@ -83,23 +80,6 @@
             this.clientsLabel.TabIndex = 3;
             this.clientsLabel.Text = "Clients";
             // 
-            // classesLabel
-            // 
-            this.classesLabel.AutoSize = true;
-            this.classesLabel.Location = new System.Drawing.Point(238, 53);
-            this.classesLabel.Name = "classesLabel";
-            this.classesLabel.Size = new System.Drawing.Size(43, 13);
-            this.classesLabel.TabIndex = 6;
-            this.classesLabel.Text = "Classes";
-            // 
-            // classList
-            // 
-            this.classList.Location = new System.Drawing.Point(237, 72);
-            this.classList.Name = "classList";
-            this.classList.Size = new System.Drawing.Size(196, 253);
-            this.classList.TabIndex = 5;
-            this.classList.UseCompatibleStateImageBehavior = false;
-            // 
             // addClientToClass
             // 
             this.addClientToClass.Location = new System.Drawing.Point(237, 352);
@@ -108,15 +88,6 @@
             this.addClientToClass.TabIndex = 7;
             this.addClientToClass.Text = "Add Client to Class";
             this.addClientToClass.UseVisualStyleBackColor = true;
-            // 
-            // getSales
-            // 
-            this.getSales.Location = new System.Drawing.Point(457, 184);
-            this.getSales.Name = "getSales";
-            this.getSales.Size = new System.Drawing.Size(196, 23);
-            this.getSales.TabIndex = 8;
-            this.getSales.Text = "Get Sales";
-            this.getSales.UseVisualStyleBackColor = true;
             // 
             // updateClient
             // 
@@ -164,15 +135,6 @@
             this.getClientsAndClasses.UseVisualStyleBackColor = true;
             this.getClientsAndClasses.Click += new System.EventHandler(this.getClientsAndClasses_Click);
             // 
-            // getClientServices
-            // 
-            this.getClientServices.Location = new System.Drawing.Point(12, 410);
-            this.getClientServices.Name = "getClientServices";
-            this.getClientServices.Size = new System.Drawing.Size(196, 23);
-            this.getClientServices.TabIndex = 15;
-            this.getClientServices.Text = "Get Purchased Services";
-            this.getClientServices.UseVisualStyleBackColor = true;
-            // 
             // enso
             // 
             this.enso.Image = ((System.Drawing.Image)(resources.GetObject("enso.Image")));
@@ -189,16 +151,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 442);
             this.Controls.Add(this.enso);
-            this.Controls.Add(this.getClientServices);
             this.Controls.Add(this.getClientsAndClasses);
             this.Controls.Add(this.andSelectedClassLabel);
             this.Controls.Add(this.withSelectedClientLabel);
             this.Controls.Add(this.getClientSchedule);
             this.Controls.Add(this.updateClient);
-            this.Controls.Add(this.getSales);
             this.Controls.Add(this.addClientToClass);
-            this.Controls.Add(this.classesLabel);
-            this.Controls.Add(this.classList);
             this.Controls.Add(this.clientsLabel);
             this.Controls.Add(this.studioName);
             this.Controls.Add(this.clientList);
@@ -218,16 +176,12 @@
         private System.Windows.Forms.ListView clientList;
         private System.Windows.Forms.Label studioName;
         private System.Windows.Forms.Label clientsLabel;
-        private System.Windows.Forms.Label classesLabel;
-        private System.Windows.Forms.ListView classList;
         private System.Windows.Forms.Button addClientToClass;
-        private System.Windows.Forms.Button getSales;
         private System.Windows.Forms.Button updateClient;
         private System.Windows.Forms.Button getClientSchedule;
         private System.Windows.Forms.Label withSelectedClientLabel;
         private System.Windows.Forms.Label andSelectedClassLabel;
         private System.Windows.Forms.Button getClientsAndClasses;
-        private System.Windows.Forms.Button getClientServices;
         private System.Windows.Forms.PictureBox enso;
     }
 }

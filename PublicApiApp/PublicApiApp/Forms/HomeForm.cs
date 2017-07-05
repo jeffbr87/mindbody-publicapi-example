@@ -21,5 +21,10 @@ namespace PublicApiApp
         {
 
         }
+
+        private void addClient_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
