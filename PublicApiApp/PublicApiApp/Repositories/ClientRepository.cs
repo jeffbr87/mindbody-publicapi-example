@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms.VisualStyles;
 using PublicApiApp.ClientService;
 using PublicApiApp.Exceptions;
 using PublicApiApp.Services;
@@ -19,7 +20,7 @@ namespace PublicApiApp.Repositories
             throw new NotImplementedException();
         }
 
-        public string AddOrUpdateClients(Client client)
+        public Client AddOrUpdateClients(Client client, bool test = false)
         {
             var clientService = ClientServiceWrapper.GetClientService();
             
@@ -28,7 +29,8 @@ namespace PublicApiApp.Repositories
                 Clients = new[] {client},
                 SendEmail = client.ID == null,
                 UserCredentials = clientService.GetOwnerCredentials(),
-                SourceCredentials = clientService.GetSourceCredentials()
+                SourceCredentials = clientService.GetSourceCredentials(),
+                Test = test
             };
 
             var response = clientService.AddOrUpdateClients(request);
@@ -38,7 +40,7 @@ namespace PublicApiApp.Repositories
                 throw new ApiException(response);
             }
 
-            return response.Clients.Single().ID;
+            return response.Clients.Single();
         }
 
         public IList<Client> GetClients()
