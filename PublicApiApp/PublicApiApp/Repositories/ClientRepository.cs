@@ -36,6 +36,8 @@ namespace PublicApiApp.Repositories
                 SearchText = " "
             };
             var clientsResult = classService.GetClients(getClientsRequest);
+            if(clientsResult.Status != StatusCode.Success)
+                throw new Exception(clientsResult.Message);
             return clientsResult.Clients;
         }
     }

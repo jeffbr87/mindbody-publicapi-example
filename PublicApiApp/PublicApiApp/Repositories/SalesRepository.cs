@@ -21,7 +21,9 @@ namespace PublicApiApp.Repositories
             };
 
             var salesResult = salesService.GetSales(getSalesRequest);
-            return salesResult.Sales;
+            if (salesResult.Status != StatusCode.Success)
+                throw new Exception(salesResult.Message);
+            return null;
         }
     }
 }
