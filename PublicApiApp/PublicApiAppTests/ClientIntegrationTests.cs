@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PublicApiApp.ClientService;
+using PublicApiApp.Engines;
 using PublicApiApp.Repositories;
 
 namespace PublicApiAppTests
@@ -11,9 +11,8 @@ namespace PublicApiAppTests
         [TestMethod]
         public void GetClientsTest()
         {
-            //TODO: start from engine
-            ClientRepository clientRepository = new ClientRepository();
-            clientRepository.GetClients();
+            ClientEngine clientEngine = new ClientEngine();
+            clientEngine.GetClients();
         }
 
         #region AddOrUpdateClients Tests
