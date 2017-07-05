@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PublicApiApp.ClientService;
+using PublicApiApp.Repositories;
 
 namespace PublicApiApp.Engines
 {
-    class ClientEngine
+    public class ClientEngine
     {
+        private readonly ClientRepository _clientRepository = new ClientRepository();       
+
+        public IList<Client> GetClients()
+        {
+            return _clientRepository.GetClients();
+        }
     }
 }
