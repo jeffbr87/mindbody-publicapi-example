@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PublicApiApp.ClientService;
+using PublicApiApp.Exceptions;
 using PublicApiApp.Services;
 
 namespace PublicApiApp.Repositories
@@ -37,7 +38,7 @@ namespace PublicApiApp.Repositories
             };
             var clientsResult = classService.GetClients(getClientsRequest);
             if(clientsResult.Status != StatusCode.Success)
-                throw new Exception(clientsResult.Message);
+                throw new ApiException(clientsResult);
             return clientsResult.Clients;
         }
     }
