@@ -31,5 +31,15 @@ namespace PublicApiApp.Engines
                 .Where(c => !c.IsEnrolled && c.IsAvailable.GetValueOrDefault() && c.MaxCapacity > c.TotalBooked)
                 .ToList();
         }
+
+        public bool AddClientToClass(int clientId, int classId, int? clientServiceId)
+        {
+            return _classRepository.AddClientToClass(new AddClientsToClassesRequest
+            {
+                ClientIDs = new[] {clientId.ToString()},
+                ClassIDs = new[] {classId},
+                ClientServiceID = clientServiceId
+            });
+        }
     }
 }

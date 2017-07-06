@@ -9,7 +9,7 @@ namespace PublicApiApp.Helpers
     {
         // TODO add some granularity to error responses. IIRC pretty much everything is an error, though
 
-        private enum Severity
+        public enum Severity
         {
             Info,
             Warning,
@@ -24,7 +24,7 @@ namespace PublicApiApp.Helpers
 
         public static void DisplayError(SaleService.MBResult result) => DisplayError(Severity.Error, result.Message);
 
-        private static void DisplayError(Severity severity, string message)
+        public static void DisplayError(Severity severity, string message)
         {
             MessageBox.Show(severity.ToString(), message, MessageBoxButtons.OK, severity.GetIcon());
         }
