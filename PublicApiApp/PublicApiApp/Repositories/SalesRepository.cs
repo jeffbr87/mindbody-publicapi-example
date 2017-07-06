@@ -25,7 +25,9 @@ namespace PublicApiApp.Repositories
 
             var salesResult = salesService.GetSales(getSalesRequest);
             if (salesResult.Status != StatusCode.Success)
+            {
                 throw new ApiException(salesResult);
+            }
             return salesResult.Sales;
         }
     }
