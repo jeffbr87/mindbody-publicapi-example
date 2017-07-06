@@ -45,5 +45,19 @@ namespace PublicApiApp.Engines
 
             return _clientRepository.AddOrUpdateClients(client);
         }
+
+        public IList<Visit> GetClientSchedule(string clientId, DateTime startDate)
+        {
+            var daysInMonth = DateTime.DaysInMonth(startDate.Year, startDate.Month);
+            var until = new DateTime(startDate.Year, startDate.Month, daysInMonth);
+            return _clientRepository.GetClientSchedule(clientId, startDate, until);
+        }
+
+        public IList<ClientService1> GetClientServices(string clientId, DateTime startDate)
+        {
+            var daysInMonth = DateTime.DaysInMonth(startDate.Year, startDate.Month);
+            var until = new DateTime(startDate.Year, startDate.Month, daysInMonth);
+            return _clientRepository.GetClientServices(clientId, startDate, until);
+        }
     }
 }
