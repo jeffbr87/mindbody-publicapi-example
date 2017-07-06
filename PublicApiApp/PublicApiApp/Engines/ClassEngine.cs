@@ -8,6 +8,8 @@ namespace PublicApiApp.Engines
 {
     public class ClassEngine
     {
+        private readonly ClassRepository _classRepository = new ClassRepository();
+
         public IList<Class> GetClasses(string clientId)
         {
             var now = DateTime.Now.Date;
@@ -25,9 +27,7 @@ namespace PublicApiApp.Engines
 
         public IList<Class> GetClasses(string clientId, DateTime startDate, DateTime endDate)
         {
-            var classRepository = new ClassRepository();
-
-            return classRepository.GetClasses(clientId, startDate, endDate)
+            return _classRepository.GetClasses(clientId, startDate, endDate)
                 .Where(c => !c.IsEnrolled && c.IsAvailable.GetValueOrDefault() && c.MaxCapacity > c.TotalBooked)
                 .ToList();
         }

@@ -40,28 +40,19 @@ namespace PublicApiApp.Repositories
         /// Adds a client to a class
         /// </summary>
         /// <remarks>Waitlists are not currently supported</remarks>
-        /// <param name="clientId"></param>
-        /// <param name="classInstanceId"></param>
-        /// <param name="pricingOptionId">If a pricing option ID is not specified, the API will choose</param>
-        public void AddClientToClass(string clientId, int classInstanceId, int? pricingOptionId)
+        public bool AddClientToClass(AddClientsToClassesRequest request)
         {
-            var request = new AddClientsToClassesRequest
-            {
-                ClassIDs = new[] {classInstanceId},
-                ClientIDs = new[] {clientId},
-                ClientServiceID = pricingOptionId
-            };
-
             AddClientsToClassesResult result;
             using (var service = ClassServiceWrapper.GetClassService())
             {
                 result = service.AddClientsToClasses(request);
             }
-
-            if (result.Status != StatusCode.Success)
+            if (result.Status == StatusCode.Success)
             {
-                ErrorHelper.DisplayError(result);
+                return true;
             }
+            ErrorHelper.DisplayError(result);
+            return false;
         }
     }
 }
