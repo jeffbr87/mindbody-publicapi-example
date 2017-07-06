@@ -41,6 +41,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.salesTotalLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.searchLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.enso)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,6 +102,7 @@
             this.updateClient.TabIndex = 9;
             this.updateClient.Text = "Update Client";
             this.updateClient.UseVisualStyleBackColor = true;
+            this.updateClient.Click += new System.EventHandler(this.updateClient_Click);
             // 
             // getClientSchedule
             // 
@@ -157,11 +160,30 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "label2";
             // 
+            // searchBox
+            // 
+            this.searchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.searchBox.Location = new System.Drawing.Point(217, 76);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(127, 21);
+            this.searchBox.TabIndex = 19;
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.AutoSize = true;
+            this.searchLabel.Location = new System.Drawing.Point(173, 80);
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(44, 13);
+            this.searchLabel.TabIndex = 20;
+            this.searchLabel.Text = "Search:";
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 424);
+            this.Controls.Add(this.searchLabel);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.enso);
@@ -175,6 +197,7 @@
             this.Controls.Add(this.addClient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "HomeForm";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "MINDBODY 0.0.1";
             this.Load += new System.EventHandler(this.HomeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.enso)).EndInit();
@@ -197,6 +220,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label salesTotalLabel;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox searchBox;
+        private System.Windows.Forms.Label searchLabel;
     }
 }
 
