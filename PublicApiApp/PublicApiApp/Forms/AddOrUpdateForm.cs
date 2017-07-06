@@ -62,7 +62,7 @@ namespace PublicApiApp.Forms
             var updatedClient = _clientEngine.AddOrUpdateClient(_currentClient);
             if (updatedClient != null)
             {              
-                _homeForm.HomeForm_Load(null, null); //Reload home form
+                _homeForm.PopulateClientList();
                 Cursor.Current = Cursors.Default;
                 Close();   
                 MessageBox.Show(isNewClient ? @"Client added!" : @"Client updated!");
