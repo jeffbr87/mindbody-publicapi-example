@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using PublicApiApp.ClientService;
@@ -39,6 +40,11 @@ namespace PublicApiApp.Forms
             updateClient.Enabled = false;
             getClientSchedule.Enabled = false;
             addClientToClass.Enabled = false;
+            addClient.BackColor = Color.FromArgb(54, 180, 199);
+            addClient.ForeColor = Color.White;
+            addClient.FlatStyle = FlatStyle.Flat;
+            addClient.FlatAppearance.BorderSize = 0;
+            addClient.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
 
             //Searchbox
             searchBox.TextChanged += searchBox_TextChanged;
@@ -49,9 +55,9 @@ namespace PublicApiApp.Forms
             clientList.FullRowSelect = true;
             clientList.MultiSelect = false;
             clientList.GridLines = true;
-            clientList.Columns.Add("First Name", 100);
-            clientList.Columns.Add("Last Name", 100);
-            clientList.Columns.Add("Email", 100);  
+            clientList.Columns.Add("First Name", 120);
+            clientList.Columns.Add("Last Name", 120);
+            clientList.Columns.Add("Email", 175);  
             PopulateClientList();         
         }
 
