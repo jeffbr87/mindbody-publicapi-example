@@ -45,13 +45,14 @@ namespace PublicApiApp.Forms
 
             //Client list view setup
             clientList.View = View.Details;
+            clientList.Clear();
             clientList.Scrollable = true;
             clientList.FullRowSelect = true;
             clientList.MultiSelect = false;
             clientList.GridLines = true;
             clientList.Columns.Add("First Name", 100);
             clientList.Columns.Add("Last Name", 100);
-            clientList.Columns.Add("Email", 100);
+            clientList.Columns.Add("Email", 200);
             _clients = _clientEngine.GetClients().OrderBy(c => c.FirstName).ToList();
             foreach (var client in _clients)
             {
