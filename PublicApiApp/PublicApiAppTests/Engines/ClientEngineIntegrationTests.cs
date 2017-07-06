@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PublicApiApp.Engines;
 
-namespace PublicApiAppTests
+namespace PublicApiAppTests.Engines
 {
     [TestClass]
-    public class ClientIntegrationTests
+    public class ClientEngineIntegrationTests
     {
         [TestMethod]
         public void GetClientsTest()
