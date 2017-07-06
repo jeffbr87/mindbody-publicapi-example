@@ -14,6 +14,7 @@ namespace PublicApiApp
     public partial class HomeForm : Form
     {
         private readonly ClientEngine _clientEngine = new ClientEngine();
+        private readonly SalesEngine _salesEngine = new SalesEngine();
 
         public HomeForm()
         {
@@ -33,7 +34,13 @@ namespace PublicApiApp
         private void HomeForm_Load(object sender, EventArgs e)
         {
             //Sales
-
+            var sales = _salesEngine.GetSales(DateTime.Now.Date, DateTime.Now);
+            decimal totalSales = 0;
+            foreach (var sale in sales)
+            {
+                totalSales += sale.Payments[0].Amount;
+            }
+            salesTotalLabel.Text = $@"${Math.Round(totalSales, 2)}";
             //Buttons - disabled unless client selected
             updateClient.Enabled = false;
             getClientSchedule.Enabled = false;

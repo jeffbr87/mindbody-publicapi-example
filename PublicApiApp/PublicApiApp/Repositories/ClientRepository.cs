@@ -93,7 +93,12 @@ namespace PublicApiApp.Repositories
                 SearchText = " "
             };
             var clientsResult = classService.GetClients(getClientsRequest);
-            if (clientsResult.Status != StatusCode.Success) ErrorHelper.DisplayError(clientsResult);
+
+            if (clientsResult.Status != StatusCode.Success)
+            {
+                ErrorHelper.DisplayError(clientsResult);
+            }
+            
             return clientsResult.Clients;
         }
     }
