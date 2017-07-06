@@ -30,6 +30,7 @@ namespace PublicApiApp.Repositories
             if (result.Status != StatusCode.Success)
             {
                 ErrorHelper.DisplayError(result);
+                return null;
             }
 
             return result.ClientServices;
@@ -54,6 +55,7 @@ namespace PublicApiApp.Repositories
             if (result.Status != StatusCode.Success)
             {
                 ErrorHelper.DisplayError(result);
+                return null;
             }
 
             return result.Visits;
@@ -77,6 +79,7 @@ namespace PublicApiApp.Repositories
             if (response.ErrorCode != 200)
             {
                 ErrorHelper.DisplayError(response);
+                return null;
             }
 
             return response.Clients.Single();
@@ -97,6 +100,7 @@ namespace PublicApiApp.Repositories
             if (clientsResult.Status != StatusCode.Success)
             {
                 ErrorHelper.DisplayError(clientsResult);
+                return null;
             }
             
             return clientsResult.Clients;
