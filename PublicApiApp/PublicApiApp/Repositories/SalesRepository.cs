@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PublicApiApp.Exceptions;
+using PublicApiApp.Helpers;
 using PublicApiApp.SaleService;
 using PublicApiApp.Services;
 
@@ -25,7 +22,9 @@ namespace PublicApiApp.Repositories
 
             var salesResult = salesService.GetSales(getSalesRequest);
             if (salesResult.Status != StatusCode.Success)
-                throw new ApiException(salesResult);
+            {
+                ErrorHelper.DisplayError(salesResult);
+            }
             return salesResult.Sales;
         }
     }
