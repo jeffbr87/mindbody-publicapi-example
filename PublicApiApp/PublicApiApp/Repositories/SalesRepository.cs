@@ -18,7 +18,9 @@ namespace PublicApiApp.Repositories
             {
                 SourceCredentials = salesService.GetSourceCredentials(),
                 UserCredentials = salesService.GetOwnerCredentials(),
-                XMLDetail = XMLDetailLevel.Full
+                XMLDetail = XMLDetailLevel.Full,
+                StartSaleDateTime = startDate,
+                EndSaleDateTime = endDate
             };
 
             var salesResult = salesService.GetSales(getSalesRequest);
