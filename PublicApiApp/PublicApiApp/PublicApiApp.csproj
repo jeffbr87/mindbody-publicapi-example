@@ -48,12 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Constants\CCredentials.cs" />
     <Compile Include="Constants\CServiceEndpoints.cs" />
     <Compile Include="Engines\ClassEngine.cs" />
     <Compile Include="Engines\ClientEngine.cs" />
     <Compile Include="Engines\SalesEngine.cs" />
-    <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Forms\HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>

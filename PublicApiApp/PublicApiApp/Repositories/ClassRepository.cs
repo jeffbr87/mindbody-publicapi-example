@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PublicApiApp.ClassService;
-using PublicApiApp.Exceptions;
+using PublicApiApp.Helpers;
 using PublicApiApp.Services;
 
 namespace PublicApiApp.Repositories
@@ -36,7 +36,7 @@ namespace PublicApiApp.Repositories
         /// <remarks>Waitlists are not currently supported</remarks>
         /// <param name="clientId"></param>
         /// <param name="classInstanceId"></param>
-        /// <param name="pricingOptionId"></param>
+        /// <param name="pricingOptionId">If a pricing option ID is not specified, the API will choose</param>
         public void AddClientToClass(string clientId, int classInstanceId, int? pricingOptionId)
         {
             var request = new AddClientsToClassesRequest
@@ -54,7 +54,7 @@ namespace PublicApiApp.Repositories
 
             if (result.Status != StatusCode.Success)
             {
-                throw new ApiException(result);
+                ErrorHelper.DisplayError(result);
             }
         }
     }
