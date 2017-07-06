@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PublicApiApp.Engines;
-using PublicApiApp.Repositories;
 
 namespace PublicApiAppTests
 {

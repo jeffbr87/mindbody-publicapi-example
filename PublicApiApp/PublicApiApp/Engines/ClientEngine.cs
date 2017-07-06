@@ -16,5 +16,10 @@ namespace PublicApiApp.Engines
         {
             return _clientRepository.GetClients();
         }
+
+        public Client AddOrUpdateClient(Client client)
+        {
+            return _clientRepository.AddOrUpdateClients(client);
+        }
     }
 }
