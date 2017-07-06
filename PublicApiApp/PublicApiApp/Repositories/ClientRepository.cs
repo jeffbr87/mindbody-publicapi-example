@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using PublicApiApp.ClientService;
-using PublicApiApp.Exceptions;
+using PublicApiApp.Constants;
+using PublicApiApp.Helpers;
 using PublicApiApp.Services;
 
 namespace PublicApiApp.Repositories
@@ -11,12 +12,51 @@ namespace PublicApiApp.Repositories
     {
         public IList<ClientService1> GetClientServices(string clientId, DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            var clientService = ClientServiceWrapper.GetClientService();
+
+            var request = new GetClientServicesRequest
+            {
+                SourceCredentials = clientService.GetSourceCredentials(),
+                UserCredentials = clientService.GetOwnerCredentials(),
+                XMLDetail = XMLDetailLevel.Full,
+                ClientID = clientId,
+                StartDate = startDate,
+                EndDate = endDate,
+                ProgramIDs = new [] { CTypeGroups.Classes }
+            };
+
+            var result = clientService.GetClientServices(request);
+
+            if (result.Status != StatusCode.Success)
+            {
+                ErrorHelper.DisplayError(result);
+            }
+
+            return result.ClientServices;
         }
 
         public IList<Visit> GetClientSchedule(string clientId, DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            var clientService = ClientServiceWrapper.GetClientService();
+
+            var request = new GetClientScheduleRequest
+            {
+                SourceCredentials = clientService.GetSourceCredentials(),
+                UserCredentials = clientService.GetOwnerCredentials(),
+                XMLDetail = XMLDetailLevel.Full,
+                ClientID = clientId,
+                StartDate = startDate,
+                EndDate = endDate
+            };
+
+            var result = clientService.GetClientSchedule(request);
+
+            if (result.Status != StatusCode.Success)
+            {
+                ErrorHelper.DisplayError(result);
+            }
+
+            return result.Visits;
         }
 
         public Client AddOrUpdateClients(Client client, bool test = false)
@@ -36,7 +76,7 @@ namespace PublicApiApp.Repositories
 
             if (response.ErrorCode != 200)
             {
-                throw new ApiException(response);
+                ErrorHelper.DisplayError(response);
             }
 
             return response.Clients.Single();
@@ -53,8 +93,7 @@ namespace PublicApiApp.Repositories
                 SearchText = " "
             };
             var clientsResult = classService.GetClients(getClientsRequest);
-            if(clientsResult.Status != StatusCode.Success)
-                throw new ApiException(clientsResult);
+            if (clientsResult.Status != StatusCode.Success) ErrorHelper.DisplayError(clientsResult);
             return clientsResult.Clients;
         }
     }
