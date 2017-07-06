@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms.VisualStyles;
 using PublicApiApp.ClientService;
 using PublicApiApp.Exceptions;
 using PublicApiApp.Services;
@@ -10,7 +9,7 @@ namespace PublicApiApp.Repositories
 {
     public class ClientRepository
     {
-        public IList<ClientService.ClientService> GetClientServices(string clientId, DateTime startDate, DateTime endDate)
+        public IList<ClientService1> GetClientServices(string clientId, DateTime startDate, DateTime endDate)
         {
             throw new NotImplementedException();
         }

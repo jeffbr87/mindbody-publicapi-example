@@ -10,25 +10,29 @@ namespace PublicApiApp.Repositories
     {
         public IList<Class> GetClasses(string clientId, DateTime startDate, DateTime endDate)
         {
-            var classService = ClassServiceWrapper.GetClassService();
-            var getClassesRequest = new GetClassesRequest
+            GetClassesResult getClassesResult;
+            using (var classService = ClassServiceWrapper.GetClassService())
             {
-                SourceCredentials = classService.GetSourceCredentials(),
-                UserCredentials = classService.GetOwnerCredentials(),
-                XMLDetail = XMLDetailLevel.Full,
-                StartDateTime = startDate,
-                EndDateTime = endDate,
-                ClientID = clientId
-            };
+                var getClassesRequest = new GetClassesRequest
+                {
+                    SourceCredentials = classService.GetSourceCredentials(),
+                    UserCredentials = classService.GetOwnerCredentials(),
+                    XMLDetail = XMLDetailLevel.Full,
+                    StartDateTime = startDate,
+                    EndDateTime = endDate,
+                    ClientID = clientId
+                };
 
-            var getClassesResults = classService.GetClasses(getClassesRequest);
+                getClassesResult = classService.GetClasses(getClassesRequest);
+            }
+                
 
-            if (getClassesResults.ErrorCode == 200)
+            if (getClassesResult.ErrorCode == 200)
             {
-                return getClassesResults.Classes;
+                return getClassesResult.Classes;
             }
 
-            return null;
+            throw new ApiException(getClassesResult);
         }
 
         /// <summary>
