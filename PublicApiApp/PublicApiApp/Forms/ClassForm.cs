@@ -14,15 +14,15 @@ namespace PublicApiApp.Forms
 {
     public partial class ClassForm : Form
     {
-        private readonly ClassEngine classEngine;
+        private readonly ClassEngine _classEngine;
 
-        public ClassForm()
+        public ClassForm(string clientId)
         {
             InitializeComponent();
-            classEngine = new ClassEngine();
+            _classEngine = new ClassEngine();
 
             var bindingSourceForClasses = new BindingSource();
-            foreach (var availableClass in classEngine.GetClasses("100014604"))
+            foreach (var availableClass in _classEngine.GetClasses(clientId))
             {
                 bindingSourceForClasses.Add(ClassMapper.Map(availableClass));
             }

@@ -32,7 +32,8 @@ namespace PublicApiApp.Repositories
                 return getClassesResult.Classes;
             }
 
-            throw new ApiException(getClassesResult);
+            ErrorHelper.DisplayError(getClassesResult);
+            return null;
         }
 
         /// <summary>

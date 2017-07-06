@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PublicApiApp.Engines;
+using PublicApiApp.Forms;
 
 namespace PublicApiApp
 {
@@ -65,6 +66,15 @@ namespace PublicApiApp
                 updateClient.Enabled = true;
                 getClientSchedule.Enabled = true;
                 addClientToClass.Enabled = true;
+            }
+        }
+
+        private void addClientToClass_Click(object sender, EventArgs e)
+        {
+            if (clientList.SelectedItems.Count > 0)
+            {
+                ClassForm form = new ClassForm(clientList.SelectedItems[0].SubItems[3].Text);
+                form.Show();
             }
         }
     }
