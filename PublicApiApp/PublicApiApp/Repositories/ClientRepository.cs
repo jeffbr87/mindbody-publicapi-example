@@ -69,7 +69,7 @@ namespace PublicApiApp.Repositories
             {
                 Clients = new[] {client},
                 SendEmail = client.ID == null,
-                UserCredentials = clientService.GetOwnerCredentials(),
+                UserCredentials = clientService.GetStaffCredentials(),
                 SourceCredentials = clientService.GetSourceCredentials(),
                 Test = test
             };
