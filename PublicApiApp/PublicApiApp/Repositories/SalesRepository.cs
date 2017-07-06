@@ -24,6 +24,7 @@ namespace PublicApiApp.Repositories
             if (salesResult.Status != StatusCode.Success)
             {
                 ErrorHelper.DisplayError(salesResult);
+                return null;
             }
             return salesResult.Sales;
         }

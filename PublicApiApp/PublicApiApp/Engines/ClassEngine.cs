@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using PublicApiApp.ClassService;
@@ -26,8 +25,11 @@ namespace PublicApiApp.Engines
 
         public IList<Class> GetClasses(string clientId, DateTime startDate, DateTime endDate)
         {
-            var repository = new ClassRepository();
-            return repository.GetClasses(clientId, startDate, endDate).Where(c => !c.IsEnrolled).ToList();
+            var classRepository = new ClassRepository();
+
+            return classRepository.GetClasses(clientId, startDate, endDate)
+                .Where(c => !c.IsEnrolled && c.IsAvailable.GetValueOrDefault() && c.MaxCapacity > c.TotalBooked)
+                .ToList();
         }
     }
 }
