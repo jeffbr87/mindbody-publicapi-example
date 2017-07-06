@@ -16,8 +16,8 @@ namespace PublicApiAppTests
         public void GetSalesTest()
         {
             SalesEngine salesEngine = new SalesEngine();
-            var startDate = DateTime.Now;
-            var endDate = DateTime.Now.AddDays(1);
+            var startDate = DateTime.Now.Date;
+            var endDate = DateTime.Now;
             salesEngine.GetSales(startDate, endDate);
         }
     }
