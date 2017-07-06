@@ -26,7 +26,7 @@ namespace PublicApiApp.Helpers
 
         public static void DisplayError(Severity severity, string message)
         {
-            MessageBox.Show(severity.ToString(), message, MessageBoxButtons.OK, severity.GetIcon());
+            MessageBox.Show(message, severity.ToString(), MessageBoxButtons.OK, severity.GetIcon());
         }
 
         private static MessageBoxIcon GetIcon(this Severity severity)

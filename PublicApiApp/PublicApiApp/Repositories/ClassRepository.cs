@@ -45,6 +45,10 @@ namespace PublicApiApp.Repositories
             AddClientsToClassesResult result;
             using (var service = ClassServiceWrapper.GetClassService())
             {
+                // Add credentials to request payload
+                request.SourceCredentials = service.GetSourceCredentials();
+                request.UserCredentials = service.GetOwnerCredentials();
+                
                 result = service.AddClientsToClasses(request);
             }
             if (result.Status == StatusCode.Success)
