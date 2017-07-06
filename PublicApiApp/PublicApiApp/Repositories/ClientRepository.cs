@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 using PublicApiApp.ClientService;
 using PublicApiApp.Exceptions;
 using PublicApiApp.Services;
@@ -21,9 +20,27 @@ namespace PublicApiApp.Repositories
             throw new NotImplementedException();
         }
 
-        public string AddOrUpdateClients(Client client, bool isUpdate)
+        public Client AddOrUpdateClients(Client client, bool test = false)
         {
-            throw new NotImplementedException();
+            var clientService = ClientServiceWrapper.GetClientService();
+            
+            var request = new AddOrUpdateClientsRequest
+            {
+                Clients = new[] {client},
+                SendEmail = client.ID == null,
+                UserCredentials = clientService.GetOwnerCredentials(),
+                SourceCredentials = clientService.GetSourceCredentials(),
+                Test = test
+            };
+
+            var response = clientService.AddOrUpdateClients(request);
+
+            if (response.ErrorCode != 200)
+            {
+                throw new ApiException(response);
+            }
+
+            return response.Clients.Single();
         }
 
         public IList<Client> GetClients()
