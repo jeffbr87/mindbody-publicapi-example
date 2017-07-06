@@ -109,6 +109,7 @@
             this.getClientSchedule.TabIndex = 10;
             this.getClientSchedule.Text = "Get Schedule";
             this.getClientSchedule.UseVisualStyleBackColor = true;
+            this.getClientSchedule.Click += new System.EventHandler(this.getClientSchedule_Click);
             // 
             // withSelectedClientLabel
             // 
