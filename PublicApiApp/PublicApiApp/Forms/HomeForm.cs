@@ -84,5 +84,15 @@ namespace PublicApiApp
                 form.Show();
             }
         }
+
+        private void getClientSchedule_Click(object sender, EventArgs e)
+        {
+            if (clientList.SelectedItems.Count > 0)
+            {
+                ScheduleForm form = new ScheduleForm(clientList.SelectedItems[0].SubItems[3].Text,
+                    clientList.SelectedItems[0].SubItems[0].Text + " " + clientList.SelectedItems[0].SubItems[1].Text);
+                form.Show();
+            }
+        }
     }
 }
