@@ -50,9 +50,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ClientIntegrationTests.cs" />
+    <Compile Include="Engines\ClientEngineIntegrationTests.cs" />
+    <Compile Include="Engines\SalesEngineIntegrationTests.cs" />
+    <Compile Include="Helpers\StringExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SalesIntegrationTests.cs" />
+    <Compile Include="Repositories\ClassRepositoryIntegrationTests.cs" />
+    <Compile Include="Repositories\ClientRepositoryIntegrationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PublicApiApp\PublicApiApp.csproj">
