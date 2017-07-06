@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PublicApiApp.ClientService;
 using PublicApiApp.Engines;
 using PublicApiApp.Forms;
 
@@ -16,6 +17,8 @@ namespace PublicApiApp
     {
         private readonly ClientEngine _clientEngine = new ClientEngine();
         private readonly SalesEngine _salesEngine = new SalesEngine();
+
+        List<Client> clients = new List<Client>();
 
         public HomeForm()
         {
@@ -42,19 +45,25 @@ namespace PublicApiApp
                 totalSales += sale.Payments[0].Amount;
             }
             label2.Text = $@"${Math.Round(totalSales, 2)}";
+
             //Buttons - disabled unless client selected
             updateClient.Enabled = false;
             getClientSchedule.Enabled = false;
             addClientToClass.Enabled = false;
+
+            //Searchbox
+            searchBox.TextChanged += searchBox_TextChanged;
+
             //Client list view setup
             clientList.View = View.Details;
+            clientList.Scrollable = true;
             clientList.FullRowSelect = true;
             clientList.MultiSelect = false;
             clientList.GridLines = true;
             clientList.Columns.Add("First Name", 100);
             clientList.Columns.Add("Last Name", 100);
             clientList.Columns.Add("Email", 100);
-            var clients = _clientEngine.GetClients();
+            clients = _clientEngine.GetClients().ToList();
             foreach (var client in clients)
             {
                 ListViewItem item = new ListViewItem(new []{ client.FirstName, client.LastName, client.Email, client.ID });
@@ -62,14 +71,19 @@ namespace PublicApiApp
             }
         }
 
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            ListViewItem foundItem = clientList.FindItemWithText(searchBox.Text, true, 0, true);
+            if (foundItem != null)
+            {
+                clientList.TopItem = foundItem;
+            }
+        }
+
         private void clientList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (clientList.SelectedItems.Count > 0)
-            {
-                var selectedClient = clientList.SelectedItems[0];
-                var clientId = selectedClient.SubItems[3].Text;
-                var clientFirstName = selectedClient.SubItems[0].Text;
-                var clientLastName = selectedClient.SubItems[1].Text;
+            {              
                 updateClient.Enabled = true;
                 getClientSchedule.Enabled = true;
                 addClientToClass.Enabled = true;
@@ -83,6 +97,15 @@ namespace PublicApiApp
                 ClassForm form = new ClassForm(clientList.SelectedItems[0].SubItems[3].Text);
                 form.Show();
             }
+        }
+
+        private void updateClient_Click(object sender, EventArgs e)
+        {
+            var selectedClient = clientList.SelectedItems[0];
+            var clientId = selectedClient.SubItems[3].Text;           
+            var client = clients.Single(c => c.ID == clientId);
+            var updateFrm = new AddOrUpdateForm(client, _clientEngine);
+            updateFrm.Show();
         }
     }
 }
