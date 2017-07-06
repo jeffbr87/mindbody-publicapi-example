@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Constants\CCredentials.cs" />
     <Compile Include="Constants\CServiceEndpoints.cs" />
+    <Compile Include="Constants\CTypeGroups.cs" />
     <Compile Include="Engines\ClassEngine.cs" />
     <Compile Include="Engines\ClientEngine.cs" />
     <Compile Include="Engines\SalesEngine.cs" />

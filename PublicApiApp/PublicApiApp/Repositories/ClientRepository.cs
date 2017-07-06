@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PublicApiApp.ClientService;
+using PublicApiApp.Constants;
 using PublicApiApp.Exceptions;
 using PublicApiApp.Services;
 
@@ -19,7 +20,8 @@ namespace PublicApiApp.Repositories
                 XMLDetail = XMLDetailLevel.Full,
                 ClientID = clientId,
                 StartDate = startDate,
-                EndDate = endDate
+                EndDate = endDate,
+                ProgramIDs = new [] { CTypeGroups.Classes }
             };
 
             var result = clientService.GetClientServices(request);
