@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms.VisualStyles;
 using PublicApiApp.ClientService;
-using PublicApiApp.Exceptions;
 using PublicApiApp.Constants;
+using PublicApiApp.Helpers;
 using PublicApiApp.Services;
 
 namespace PublicApiApp.Repositories
@@ -30,7 +29,7 @@ namespace PublicApiApp.Repositories
 
             if (result.Status != StatusCode.Success)
             {
-                throw new ApiException(result);
+                ErrorHelper.DisplayError(result);
             }
 
             return result.ClientServices;
@@ -54,7 +53,7 @@ namespace PublicApiApp.Repositories
 
             if (result.Status != StatusCode.Success)
             {
-                throw new ApiException(result);
+                ErrorHelper.DisplayError(result);
             }
 
             return result.Visits;
@@ -77,7 +76,7 @@ namespace PublicApiApp.Repositories
 
             if (response.ErrorCode != 200)
             {
-                throw new ApiException(response);
+                ErrorHelper.DisplayError(response);
             }
 
             return response.Clients.Single();
@@ -94,8 +93,7 @@ namespace PublicApiApp.Repositories
                 SearchText = " "
             };
             var clientsResult = classService.GetClients(getClientsRequest);
-            if(clientsResult.Status != StatusCode.Success)
-                throw new ApiException(clientsResult);
+            if (clientsResult.Status != StatusCode.Success) ErrorHelper.DisplayError(clientsResult);
             return clientsResult.Clients;
         }
     }
