@@ -14,6 +14,9 @@ namespace PublicApiApp.Constants
         public const string Username = "owner";
         public const string UserPass = "owner1234";
 
+        public const string StaffUsername = "publicstafftest";
+        public const string StaffPassword = "Apitest1234";
+
         public static int[] SiteIds = {-99};
     }
 }

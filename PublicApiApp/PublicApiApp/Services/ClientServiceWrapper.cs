@@ -34,5 +34,15 @@ namespace PublicApiApp.Services
                 SiteIDs = CCredentials.SiteIds
             };
         }
+
+        public UserCredentials GetStaffCredentials()
+        {
+            return new UserCredentials
+            {
+                Username = CCredentials.StaffUsername,
+                Password = CCredentials.StaffPassword,
+                SiteIDs = CCredentials.SiteIds
+            };
+        }
     }
 }
