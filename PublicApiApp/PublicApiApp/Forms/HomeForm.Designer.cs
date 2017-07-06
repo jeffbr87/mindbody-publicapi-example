@@ -40,12 +40,13 @@
             this.enso = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.salesTotalLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.enso)).BeginInit();
             this.SuspendLayout();
             // 
             // addClient
             // 
-            this.addClient.Location = new System.Drawing.Point(349, 82);
+            this.addClient.Location = new System.Drawing.Point(350, 75);
             this.addClient.Name = "addClient";
             this.addClient.Size = new System.Drawing.Size(102, 23);
             this.addClient.TabIndex = 0;
@@ -55,7 +56,7 @@
             // 
             // clientList
             // 
-            this.clientList.Location = new System.Drawing.Point(12, 111);
+            this.clientList.Location = new System.Drawing.Point(13, 104);
             this.clientList.Name = "clientList";
             this.clientList.Size = new System.Drawing.Size(439, 191);
             this.clientList.TabIndex = 1;
@@ -66,7 +67,7 @@
             // 
             this.studioName.AutoSize = true;
             this.studioName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.studioName.Location = new System.Drawing.Point(10, 11);
+            this.studioName.Location = new System.Drawing.Point(12, 9);
             this.studioName.Name = "studioName";
             this.studioName.Size = new System.Drawing.Size(147, 25);
             this.studioName.TabIndex = 2;
@@ -75,7 +76,7 @@
             // clientsLabel
             // 
             this.clientsLabel.AutoSize = true;
-            this.clientsLabel.Location = new System.Drawing.Point(14, 87);
+            this.clientsLabel.Location = new System.Drawing.Point(14, 80);
             this.clientsLabel.Name = "clientsLabel";
             this.clientsLabel.Size = new System.Drawing.Size(38, 13);
             this.clientsLabel.TabIndex = 3;
@@ -83,16 +84,17 @@
             // 
             // addClientToClass
             // 
-            this.addClientToClass.Location = new System.Drawing.Point(12, 394);
+            this.addClientToClass.Location = new System.Drawing.Point(13, 387);
             this.addClientToClass.Name = "addClientToClass";
             this.addClientToClass.Size = new System.Drawing.Size(196, 23);
             this.addClientToClass.TabIndex = 7;
             this.addClientToClass.Text = "Add Client to Class";
             this.addClientToClass.UseVisualStyleBackColor = true;
+            this.addClientToClass.Click += new System.EventHandler(this.addClientToClass_Click);
             // 
             // updateClient
             // 
-            this.updateClient.Location = new System.Drawing.Point(12, 336);
+            this.updateClient.Location = new System.Drawing.Point(13, 329);
             this.updateClient.Name = "updateClient";
             this.updateClient.Size = new System.Drawing.Size(196, 23);
             this.updateClient.TabIndex = 9;
@@ -101,7 +103,7 @@
             // 
             // getClientSchedule
             // 
-            this.getClientSchedule.Location = new System.Drawing.Point(12, 365);
+            this.getClientSchedule.Location = new System.Drawing.Point(13, 358);
             this.getClientSchedule.Name = "getClientSchedule";
             this.getClientSchedule.Size = new System.Drawing.Size(196, 23);
             this.getClientSchedule.TabIndex = 10;
@@ -111,7 +113,7 @@
             // withSelectedClientLabel
             // 
             this.withSelectedClientLabel.AutoSize = true;
-            this.withSelectedClientLabel.Location = new System.Drawing.Point(12, 316);
+            this.withSelectedClientLabel.Location = new System.Drawing.Point(13, 309);
             this.withSelectedClientLabel.Name = "withSelectedClientLabel";
             this.withSelectedClientLabel.Size = new System.Drawing.Size(103, 13);
             this.withSelectedClientLabel.TabIndex = 12;
@@ -120,7 +122,7 @@
             // enso
             // 
             this.enso.Image = ((System.Drawing.Image)(resources.GetObject("enso.Image")));
-            this.enso.Location = new System.Drawing.Point(305, 316);
+            this.enso.Location = new System.Drawing.Point(306, 309);
             this.enso.Name = "enso";
             this.enso.Size = new System.Drawing.Size(146, 101);
             this.enso.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -130,7 +132,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 55);
+            this.label1.Location = new System.Drawing.Point(14, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 17;
@@ -145,12 +147,21 @@
             this.salesTotalLabel.TabIndex = 18;
             this.salesTotalLabel.Text = "SalesTotalLabel";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(96, 51);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "label2";
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 435);
-            this.Controls.Add(this.salesTotalLabel);
+            this.ClientSize = new System.Drawing.Size(464, 424);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.enso);
             this.Controls.Add(this.withSelectedClientLabel);
@@ -184,6 +195,7 @@
         private System.Windows.Forms.PictureBox enso;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label salesTotalLabel;
+        private System.Windows.Forms.Label label2;
     }
 }
 
