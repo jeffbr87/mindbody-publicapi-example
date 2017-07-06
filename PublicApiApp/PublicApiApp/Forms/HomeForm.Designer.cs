@@ -1,4 +1,4 @@
-﻿namespace PublicApiApp
+﻿namespace PublicApiApp.Forms
 {
     partial class HomeForm
     {
