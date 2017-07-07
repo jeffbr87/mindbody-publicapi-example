@@ -108,7 +108,7 @@ namespace PublicApiApp.Forms
                 }
 
                 _loadForm.Show();
-                ClassForm form = await Task.Run(() => new ClassForm(selectedClient.ID));
+                ClassForm form = await Task.Run(() => new ClassForm(selectedClient.ID, selectedClient.FirstName + " " + selectedClient.LastName));
                 _loadForm.Hide();
                 form.Show();
                 Cursor.Current = Cursors.Default;

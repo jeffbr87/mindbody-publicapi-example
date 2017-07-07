@@ -16,20 +16,23 @@ namespace PublicApiApp.Forms
         private readonly ClientEngine _clientEngine;
 
         private readonly string _clientId;
+        private readonly string _clientName;
 
         private List<ClientService1> _clientServices;
         private List<Class> _classes;
 
-        public ClassForm(string clientId)
+        public ClassForm(string clientId, string clientName)
         {
             _classEngine = new ClassEngine();
             _clientEngine = new ClientEngine();
             _clientId = clientId;
-
+            _clientName = clientName;
+            
             InitializeComponent();
             InitializeClassListControl();
             // TODO populate date picker
             PopulateClientServices(DateTime.Now);
+            clientNameLabel.Text = clientName;
 
             _classes = _classEngine.GetClasses(clientId).ToList();
             var classListViewItems = _classes
@@ -77,7 +80,9 @@ namespace PublicApiApp.Forms
 
             if (_classEngine.AddClientToClass(_clientId, selectedClass.ID.Value, clientServiceId))
             {
-                // TODO close on success and open client class summary screen?
+                ScheduleForm form = new ScheduleForm(_clientId, _clientName);
+                form.Show();
+                Close();
             }
         }
 
@@ -121,5 +126,10 @@ namespace PublicApiApp.Forms
         }
 
         #endregion
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
