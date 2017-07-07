@@ -31,17 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClassForm));
             this.label1 = new System.Windows.Forms.Label();
             this.ClassListControl = new System.Windows.Forms.ListView();
+            this.ClassIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ClassNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ClassStartHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ClassEndHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ClassCapacityHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AddClientToClassButton = new System.Windows.Forms.Button();
             this.ClientServicesListControl = new System.Windows.Forms.ComboBox();
             this.dateFilterControl = new System.Windows.Forms.DateTimePicker();
             this.textFilterControl = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ClassIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ClassNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ClassStartHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ClassEndHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ClassCapacityHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label1
@@ -76,7 +76,6 @@
             this.ClassListControl.OwnerDraw = true;
             this.ClassListControl.ShowGroups = false;
             this.ClassListControl.Size = new System.Drawing.Size(698, 356);
-            this.ClassListControl.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.ClassListControl.TabIndex = 2;
             this.ClassListControl.UseCompatibleStateImageBehavior = false;
             this.ClassListControl.View = System.Windows.Forms.View.Details;
@@ -84,6 +83,30 @@
             this.ClassListControl.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.ClassListControl_DrawItem);
             this.ClassListControl.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.ClassListControl_DrawSubItem);
             this.ClassListControl.Resize += new System.EventHandler(this.ClassListControl_Resize);
+            // 
+            // ClassIdHeader
+            // 
+            this.ClassIdHeader.Text = "ID";
+            this.ClassIdHeader.Width = 100;
+            // 
+            // ClassNameHeader
+            // 
+            this.ClassNameHeader.Text = "Name";
+            this.ClassNameHeader.Width = 200;
+            // 
+            // ClassStartHeader
+            // 
+            this.ClassStartHeader.Text = "Start";
+            this.ClassStartHeader.Width = 150;
+            // 
+            // ClassEndHeader
+            // 
+            this.ClassEndHeader.Text = "End";
+            this.ClassEndHeader.Width = 150;
+            // 
+            // ClassCapacityHeader
+            // 
+            this.ClassCapacityHeader.Text = "Capacity";
             // 
             // AddClientToClassButton
             // 
@@ -141,30 +164,6 @@
             this.label3.Size = new System.Drawing.Size(156, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Client\'s Service Pricing Options:";
-            // 
-            // ClassIdHeader
-            // 
-            this.ClassIdHeader.Text = "ID";
-            this.ClassIdHeader.Width = 100;
-            // 
-            // ClassNameHeader
-            // 
-            this.ClassNameHeader.Text = "Name";
-            this.ClassNameHeader.Width = 200;
-            // 
-            // ClassStartHeader
-            // 
-            this.ClassStartHeader.Text = "Start";
-            this.ClassStartHeader.Width = 150;
-            // 
-            // ClassEndHeader
-            // 
-            this.ClassEndHeader.Text = "End";
-            this.ClassEndHeader.Width = 150;
-            // 
-            // ClassCapacityHeader
-            // 
-            this.ClassCapacityHeader.Text = "Capacity";
             // 
             // ClassForm
             // 

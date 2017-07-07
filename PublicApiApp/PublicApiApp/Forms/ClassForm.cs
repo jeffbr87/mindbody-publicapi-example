@@ -132,7 +132,8 @@ namespace PublicApiApp.Forms
                         classItem.EndDateTime.ToString(),
                         (classItem.MaxCapacity - classItem.TotalBooked).ToString()
                     }
-                }).ToArray();
+                })
+                .ToArray();
 
             ClassListControl.Items.Clear();
             ClassListControl.Items.AddRange(classListViewItems);
