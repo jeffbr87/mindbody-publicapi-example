@@ -51,7 +51,7 @@ namespace PublicApiApp.Forms
             clientList.GridLines = true;
             clientList.Columns.Add("First Name", 100);
             clientList.Columns.Add("Last Name", 100);
-            clientList.Columns.Add("Email", 100);  
+            clientList.Columns.Add("Email", 200);  
             PopulateClientList();         
         }
 
