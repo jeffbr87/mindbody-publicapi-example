@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,26 +13,29 @@ namespace PublicApiApp.Forms
     {
         private readonly ClientEngine _clientEngine = new ClientEngine();
         private readonly SalesEngine _salesEngine = new SalesEngine();
-        private LoadingForm _loadForm = new LoadingForm();
+        private readonly LoadingForm _loadForm = new LoadingForm();
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public HomeForm()
         {
             InitializeComponent();
         }   
 
+        /// <summary>
+        /// Home form loader
+        /// </summary>
         public void HomeForm_Load(object sender, EventArgs e)
         {
             _loadForm.Show();
             //Sales
             var sales = _salesEngine.GetSales(DateTime.Now.Date, DateTime.Now);
-            decimal totalSales = 0;
-            foreach (var sale in sales)
-            {
-                totalSales += sale.Payments[0].Amount;
-            }
-            label2.Text = $@"${Math.Round(totalSales, 2)}";
+            var totalSales = Math.Round(sales.Sum(sale => sale.Payments[0].Amount), 2);
 
-            //Buttons - disabled unless client selected
+            label2.Text = $@"${totalSales}";
+
+            // Buttons - disabled unless client selected
             updateClient.Enabled = false;
             getClientSchedule.Enabled = false;
             addClientToClass.Enabled = false;
@@ -43,10 +45,10 @@ namespace PublicApiApp.Forms
             addClient.FlatAppearance.BorderSize = 0;
             addClient.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255);
 
-            //Searchbox
+            // Searchbox
             searchBox.TextChanged += searchBox_TextChanged;
 
-            //Client list view setup
+            // Client list view setup
             clientList.View = View.Details;
             clientList.Scrollable = true;
             clientList.FullRowSelect = true;
@@ -58,7 +60,10 @@ namespace PublicApiApp.Forms
             PopulateClientList();
             _loadForm.Hide();
         }
-
+        
+        /// <summary>
+        /// Populate client list with clients
+        /// </summary>
         public async void PopulateClientList()
         {
             clientList.Items.Clear();
@@ -77,50 +82,69 @@ namespace PublicApiApp.Forms
            studioName.Text = clients.FirstOrDefault(c => c.HomeLocation?.Name != null)?.HomeLocation.Name ?? "My Studio";
         }
 
+        /// <summary>
+        /// Search box text change
+        /// </summary>
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            ListViewItem foundItem = clientList.FindItemWithText(searchBox.Text, true, 0, true);
+            var foundItem = clientList.FindItemWithText(searchBox.Text, true, 0, true);
             if (foundItem != null)
             {
                 clientList.TopItem = foundItem;
             }
         }
 
+        /// <summary>
+        /// Client list index change
+        /// </summary>
         private void clientList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (clientList.SelectedItems.Count > 0)
-            {              
-                updateClient.Enabled = true;
-                getClientSchedule.Enabled = true;
-                addClientToClass.Enabled = true;
+            if (clientList.SelectedItems.Count == 0)
+            {
+                return;
             }
+
+            updateClient.Enabled = true;
+            getClientSchedule.Enabled = true;
+            addClientToClass.Enabled = true;
         }
 
+        /// <summary>
+        /// Add client to class button click
+        /// </summary>
         private async void addClientToClass_Click(object sender, EventArgs e)
         {
-            if (clientList.SelectedItems.Count > 0)
+            if (clientList.SelectedItems.Count == 0)
             {
-                Cursor.Current = Cursors.WaitCursor;
-                var selectedClient = clientList.SelectedItems[0].Tag as Client;
-                if (selectedClient?.ID == null)
-                {
-                    ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
-                }
-
-                _loadForm.Show();
-                ClassForm form = await Task.Run(() => new ClassForm(selectedClient.ID, selectedClient.FirstName + " " + selectedClient.LastName));
-                _loadForm.Hide();
-                form.Show();
-                Cursor.Current = Cursors.Default;
+                return;
             }
+
+            Cursor.Current = Cursors.WaitCursor;
+            var selectedClient = clientList.SelectedItems[0].Tag as Client;
+            if (selectedClient?.ID == null)
+            {
+                ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
+            }
+
+            _loadForm.Show();
+            var form = await Task.Run(() => new ClassForm(selectedClient));
+            _loadForm.Hide();
+            form.Show();
+            Cursor.Current = Cursors.Default;
         }
 
+        /// <summary>
+        /// Add new client button click
+        /// </summary>
         private void addClient_Click(object sender, EventArgs e)
         {
             var updateFrm = new AddOrUpdateForm(_clientEngine, this);
             updateFrm.Show();
         }
 
+        /// <summary>
+        /// Update client button click
+        /// </summary>
         private void updateClient_Click(object sender, EventArgs e)
         {
             var selectedClient = clientList.SelectedItems[0].Tag as Client;
@@ -132,21 +156,28 @@ namespace PublicApiApp.Forms
             updateFrm.Show();
         }
 
+        /// <summary>
+        /// Get client schedule button click
+        /// </summary>
         private void getClientSchedule_Click(object sender, EventArgs e)
         {
-            if (clientList.SelectedItems.Count > 0)
+            if (clientList.SelectedItems.Count == 0)
             {
-                Cursor.Current = Cursors.WaitCursor;
-                var selectedClient = clientList.SelectedItems[0].Tag as Client;
-                if (selectedClient?.ID == null)
-                {
-                    ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
-                }
-                ScheduleForm form = new ScheduleForm(selectedClient.ID,
-                    selectedClient.FirstName + " " + selectedClient.LastName);
-                form.Show();
-                Cursor.Current = Cursors.Default;
+                return;
             }
+
+            Cursor.Current = Cursors.WaitCursor;
+
+            var selectedClient = clientList.SelectedItems[0].Tag as Client;
+            if (selectedClient?.ID == null)
+            {
+                ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
+                return;
+            }
+
+            new ScheduleForm(selectedClient.ID, $"{selectedClient.FirstName} {selectedClient.LastName}").Show();
+
+            Cursor.Current = Cursors.Default;
         }
     }
 }
