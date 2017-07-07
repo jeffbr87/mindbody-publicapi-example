@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Schema;
 using PublicApiApp.ClientService;
 using PublicApiApp.Repositories;
 using PublicApiApp.Extensions;
@@ -22,27 +21,32 @@ namespace PublicApiApp.Engines
             if (client.FirstName.IsNullOrEmpty())
             {
                 ErrorHelper.DisplayError(ErrorHelper.Severity.Error, "Client's first name cannot be empty.");
+                return null;
             }
 
             if (client.LastName.IsNullOrEmpty())
             {
                 ErrorHelper.DisplayError(ErrorHelper.Severity.Error, "Client's last name cannot be empty.");
+                return null;
             }
 
             if (client.Email.IsNullOrEmpty())
             {
                 ErrorHelper.DisplayError(ErrorHelper.Severity.Error, "Client's email cannot be empty.");
+                return null;
             }
 
             if (!client.Email.IsValidEmailAddress())
             {
                 ErrorHelper.DisplayError(ErrorHelper.Severity.Error, $"Client's email is not a valid format: {client.Email}");
+                return null;
             }
 
             if (!client.MobilePhone.IsNullOrEmpty() &&
                 !client.MobilePhone.IsValidPhoneNumber())
             {
                 ErrorHelper.DisplayError(ErrorHelper.Severity.Error, $"The phone number is not in a recognized US format: {client.MobilePhone}");
+                return null;
             }
 
             return _clientRepository.AddOrUpdateClients(client);
