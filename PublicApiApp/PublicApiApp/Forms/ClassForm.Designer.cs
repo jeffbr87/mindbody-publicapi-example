@@ -78,7 +78,6 @@ namespace PublicApiApp.Forms
             this.ClassListControl.OwnerDraw = true;
             this.ClassListControl.ShowGroups = false;
             this.ClassListControl.Size = new System.Drawing.Size(698, 371);
-            this.ClassListControl.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.ClassListControl.TabIndex = 2;
             this.ClassListControl.UseCompatibleStateImageBehavior = false;
             this.ClassListControl.View = System.Windows.Forms.View.Details;
