@@ -37,7 +37,7 @@ namespace PublicApiApp.Forms
             
             // TODO populate date picker
             PopulateClientServices(DateTime.Now);
-            clientNameLabel.Text = clientName;
+            clientNameLabel.Text = client.FirstName + " " + client.LastName;
 
             // Populate classes
             _classes = _classEngine.GetClasses(_client.ID).ToList();
@@ -60,7 +60,7 @@ namespace PublicApiApp.Forms
 
             if (_classEngine.AddClientToClass(_client.ID, selectedClass.ID.Value, clientServiceId))
             {
-                ScheduleForm form = new ScheduleForm(_clientId, _clientName);
+                ScheduleForm form = new ScheduleForm(_client.ID, _client.FirstName + " " + _client.LastName);
                 form.Show();
                 Close();
             }
