@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClassForm));
             this.label1 = new System.Windows.Forms.Label();
             this.ClassListControl = new System.Windows.Forms.ListView();
             this.AddClientToClassButton = new System.Windows.Forms.Button();
@@ -39,7 +40,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 165);
+            this.label1.Location = new System.Drawing.Point(6, 74);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
@@ -49,7 +50,7 @@
             // 
             // ClassListControl
             // 
-            this.ClassListControl.Location = new System.Drawing.Point(9, 196);
+            this.ClassListControl.Location = new System.Drawing.Point(9, 102);
             this.ClassListControl.Margin = new System.Windows.Forms.Padding(2);
             this.ClassListControl.MultiSelect = false;
             this.ClassListControl.Name = "ClassListControl";
@@ -60,7 +61,7 @@
             // 
             // AddClientToClassButton
             // 
-            this.AddClientToClassButton.Location = new System.Drawing.Point(533, 553);
+            this.AddClientToClassButton.Location = new System.Drawing.Point(533, 459);
             this.AddClientToClassButton.Name = "AddClientToClassButton";
             this.AddClientToClassButton.Size = new System.Drawing.Size(170, 40);
             this.AddClientToClassButton.TabIndex = 3;
@@ -71,14 +72,14 @@
             // ClientServicesListControl
             // 
             this.ClientServicesListControl.FormattingEnabled = true;
-            this.ClientServicesListControl.Location = new System.Drawing.Point(13, 26);
+            this.ClientServicesListControl.Location = new System.Drawing.Point(9, 29);
             this.ClientServicesListControl.Name = "ClientServicesListControl";
             this.ClientServicesListControl.Size = new System.Drawing.Size(258, 21);
             this.ClientServicesListControl.TabIndex = 4;
             // 
             // dateFilterControl
             // 
-            this.dateFilterControl.Location = new System.Drawing.Point(326, 26);
+            this.dateFilterControl.Location = new System.Drawing.Point(322, 30);
             this.dateFilterControl.Name = "dateFilterControl";
             this.dateFilterControl.Size = new System.Drawing.Size(200, 20);
             this.dateFilterControl.TabIndex = 5;
@@ -86,7 +87,7 @@
             // 
             // textFilterControl
             // 
-            this.textFilterControl.Location = new System.Drawing.Point(66, 165);
+            this.textFilterControl.Location = new System.Drawing.Point(66, 71);
             this.textFilterControl.Name = "textFilterControl";
             this.textFilterControl.Size = new System.Drawing.Size(641, 20);
             this.textFilterControl.TabIndex = 6;
@@ -97,16 +98,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 637);
+            this.ClientSize = new System.Drawing.Size(715, 510);
             this.Controls.Add(this.textFilterControl);
             this.Controls.Add(this.dateFilterControl);
             this.Controls.Add(this.ClientServicesListControl);
             this.Controls.Add(this.AddClientToClassButton);
             this.Controls.Add(this.ClassListControl);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ClassForm";
-            this.Text = "ClassForm";
+            this.Text = "Add Client to Class";
             this.ResumeLayout(false);
             this.PerformLayout();
 

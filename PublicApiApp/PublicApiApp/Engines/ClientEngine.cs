@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using PublicApiApp.ClientService;
 using PublicApiApp.Repositories;
 using PublicApiApp.Extensions;
@@ -9,7 +10,27 @@ namespace PublicApiApp.Engines
 {
     public class ClientEngine
     {
-        private readonly ClientRepository _clientRepository = new ClientRepository();       
+        private readonly ClientRepository _clientRepository = new ClientRepository();
+
+        public Task<IList<Client>> GetClientsAsync()
+        {
+            return new Task<IList<Client>>(GetClients);
+        }
+
+        public Task<Client> AddOrUpdateClientAsync(Client client)
+        {
+            return new Task<Client>(() => AddOrUpdateClient(client));
+        }
+
+        public Task<IList<Visit>> GetClientScheduleAsync(string clientId, DateTime startDate)
+        {
+            return new Task<IList<Visit>>(() => GetClientSchedule(clientId, startDate));
+        }
+
+        public Task<IList<ClientService1>> GetClientServicesAsync(string clientId, DateTime startDate)
+        {
+            return new Task<IList<ClientService1>>(() => GetClientServices(clientId, startDate));
+        }
 
         public IList<Client> GetClients()
         {

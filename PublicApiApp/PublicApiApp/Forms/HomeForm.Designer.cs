@@ -154,6 +154,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label2.Location = new System.Drawing.Point(96, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
@@ -196,6 +197,7 @@
             this.Controls.Add(this.clientList);
             this.Controls.Add(this.addClient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomeForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "MINDBODY 0.0.1";
