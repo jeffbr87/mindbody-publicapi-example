@@ -70,6 +70,11 @@ namespace PublicApiApp.Engines
                 return null;
             }
 
+            if (client.BirthDate == null || client.BirthDateSpecified == false)
+            {
+                ErrorHelper.DisplayError(ErrorHelper.Severity.Error, "Client's birth date is required");
+            }
+
             return _clientRepository.AddOrUpdateClients(client);
         }
 
