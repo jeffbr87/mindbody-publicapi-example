@@ -114,10 +114,11 @@ namespace PublicApiApp.Forms
         /// </summary>
         private async void addClientToClass_Click(object sender, EventArgs e)
         {
-            if (clientList.SelectedItems.Count != 0)
+            if (clientList.SelectedItems.Count == 0)
             {
                 return;
             }
+
             Cursor.Current = Cursors.WaitCursor;
             var selectedClient = clientList.SelectedItems[0].Tag as Client;
             if (selectedClient?.ID == null)
@@ -160,7 +161,7 @@ namespace PublicApiApp.Forms
         /// </summary>
         private void getClientSchedule_Click(object sender, EventArgs e)
         {
-            if (clientList.SelectedItems.Count <= 0)
+            if (clientList.SelectedItems.Count == 0)
             {
                 return;
             }
