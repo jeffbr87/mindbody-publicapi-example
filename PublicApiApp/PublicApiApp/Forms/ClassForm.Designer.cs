@@ -44,6 +44,7 @@ namespace PublicApiApp.Forms
             this.textFilterControl = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.clientNameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -71,13 +72,13 @@ namespace PublicApiApp.Forms
             this.ClassCapacityHeader});
             this.ClassListControl.FullRowSelect = true;
             this.ClassListControl.GridLines = true;
-            this.ClassListControl.Location = new System.Drawing.Point(9, 77);
+            this.ClassListControl.Location = new System.Drawing.Point(9, 92);
             this.ClassListControl.Margin = new System.Windows.Forms.Padding(2);
             this.ClassListControl.MultiSelect = false;
             this.ClassListControl.Name = "ClassListControl";
             this.ClassListControl.OwnerDraw = true;
             this.ClassListControl.ShowGroups = false;
-            this.ClassListControl.Size = new System.Drawing.Size(698, 371);
+            this.ClassListControl.Size = new System.Drawing.Size(698, 375);
             this.ClassListControl.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.ClassListControl.TabIndex = 2;
             this.ClassListControl.UseCompatibleStateImageBehavior = false;
@@ -115,7 +116,7 @@ namespace PublicApiApp.Forms
             // 
             this.AddClientToClassButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AddClientToClassButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.AddClientToClassButton.Location = new System.Drawing.Point(537, 462);
+            this.AddClientToClassButton.Location = new System.Drawing.Point(537, 481);
             this.AddClientToClassButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
             this.AddClientToClassButton.Name = "AddClientToClassButton";
             this.AddClientToClassButton.Size = new System.Drawing.Size(170, 40);
@@ -127,7 +128,7 @@ namespace PublicApiApp.Forms
             // ClientServicesListControl
             // 
             this.ClientServicesListControl.FormattingEnabled = true;
-            this.ClientServicesListControl.Location = new System.Drawing.Point(9, 43);
+            this.ClientServicesListControl.Location = new System.Drawing.Point(9, 54);
             this.ClientServicesListControl.Name = "ClientServicesListControl";
             this.ClientServicesListControl.Size = new System.Drawing.Size(367, 21);
             this.ClientServicesListControl.TabIndex = 4;
@@ -135,7 +136,7 @@ namespace PublicApiApp.Forms
             // dateFilterControl
             // 
             this.dateFilterControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateFilterControl.Location = new System.Drawing.Point(468, 17);
+            this.dateFilterControl.Location = new System.Drawing.Point(468, 28);
             this.dateFilterControl.MinDate = new System.DateTime(2017, 7, 7, 0, 0, 0, 0);
             this.dateFilterControl.Name = "dateFilterControl";
             this.dateFilterControl.Size = new System.Drawing.Size(239, 20);
@@ -146,7 +147,7 @@ namespace PublicApiApp.Forms
             // textFilterControl
             // 
             this.textFilterControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textFilterControl.Location = new System.Drawing.Point(468, 44);
+            this.textFilterControl.Location = new System.Drawing.Point(468, 55);
             this.textFilterControl.Name = "textFilterControl";
             this.textFilterControl.Size = new System.Drawing.Size(239, 20);
             this.textFilterControl.TabIndex = 6;
@@ -156,7 +157,7 @@ namespace PublicApiApp.Forms
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(387, 47);
+            this.label2.Location = new System.Drawing.Point(387, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 13);
             this.label2.TabIndex = 7;
@@ -165,17 +166,28 @@ namespace PublicApiApp.Forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 24);
+            this.label3.Location = new System.Drawing.Point(9, 35);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(156, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Client\'s Service Pricing Options:";
             // 
+            // clientNameLabel
+            // 
+            this.clientNameLabel.AutoSize = true;
+            this.clientNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clientNameLabel.Location = new System.Drawing.Point(12, 8);
+            this.clientNameLabel.Name = "clientNameLabel";
+            this.clientNameLabel.Size = new System.Drawing.Size(113, 24);
+            this.clientNameLabel.TabIndex = 9;
+            this.clientNameLabel.Text = "Client Name";
+            // 
             // ClassForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 510);
+            this.ClientSize = new System.Drawing.Size(715, 529);
+            this.Controls.Add(this.clientNameLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textFilterControl);
@@ -209,5 +221,6 @@ namespace PublicApiApp.Forms
         private System.Windows.Forms.ColumnHeader ClassStartHeader;
         private System.Windows.Forms.ColumnHeader ClassEndHeader;
         private System.Windows.Forms.ColumnHeader ClassCapacityHeader;
+        private System.Windows.Forms.Label clientNameLabel;
     }
 }
