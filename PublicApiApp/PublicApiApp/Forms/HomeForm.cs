@@ -19,12 +19,7 @@ namespace PublicApiApp.Forms
         public HomeForm()
         {
             InitializeComponent();
-        }
-
-        private void getClientsAndClasses_Click(object sender, EventArgs e)
-        {
-
-        }     
+        }   
 
         public void HomeForm_Load(object sender, EventArgs e)
         {

@@ -40,6 +40,7 @@ namespace PublicApiApp.Forms
             Text = _currentClient.ID.IsNullOrEmpty() ? "Add New Client" : "Edit Client";
             firstName.Text = _currentClient.FirstName;
             lastName.Text = _currentClient.LastName;
+            birthDate.Value = _currentClient.BirthDate ?? DateTime.Now;
             email.Text = _currentClient.Email;
             phone.Text = _currentClient.MobilePhone;
             save.BackColor = Color.FromArgb(54, 180, 199);
@@ -56,6 +57,11 @@ namespace PublicApiApp.Forms
 
             _currentClient.FirstName = firstName.Text;
             _currentClient.LastName = lastName.Text;
+            _currentClient.BirthDate = birthDate.Value;
+            if (_currentClient.BirthDate != null)
+            {
+                _currentClient.BirthDateSpecified = true;
+            }
             _currentClient.Email = email.Text;
             _currentClient.MobilePhone = phone.Text; 
                     

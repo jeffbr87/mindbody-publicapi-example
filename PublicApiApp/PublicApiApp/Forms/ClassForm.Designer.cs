@@ -61,7 +61,9 @@
             // 
             // AddClientToClassButton
             // 
-            this.AddClientToClassButton.Location = new System.Drawing.Point(533, 459);
+            this.AddClientToClassButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddClientToClassButton.Location = new System.Drawing.Point(537, 463);
+            this.AddClientToClassButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
             this.AddClientToClassButton.Name = "AddClientToClassButton";
             this.AddClientToClassButton.Size = new System.Drawing.Size(170, 40);
             this.AddClientToClassButton.TabIndex = 3;
