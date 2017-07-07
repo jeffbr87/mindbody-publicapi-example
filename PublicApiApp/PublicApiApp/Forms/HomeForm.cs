@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using PublicApiApp.ClientService;
 using PublicApiApp.Engines;
@@ -12,6 +13,7 @@ namespace PublicApiApp.Forms
     {
         private readonly ClientEngine _clientEngine = new ClientEngine();
         private readonly SalesEngine _salesEngine = new SalesEngine();
+        private LoadingForm _loadForm = new LoadingForm();
 
         /// <summary>
         /// Constructor
@@ -25,8 +27,9 @@ namespace PublicApiApp.Forms
         /// Home form loader
         /// </summary>
         public void HomeForm_Load(object sender, EventArgs e)
-        {            
-            // Sales
+        {
+            _loadForm.Show();
+            //Sales
             var sales = _salesEngine.GetSales(DateTime.Now.Date, DateTime.Now);
             var totalSales = Math.Round(sales.Sum(sale => sale.Payments[0].Amount), 2);
 
@@ -53,17 +56,19 @@ namespace PublicApiApp.Forms
             clientList.GridLines = true;
             clientList.Columns.Add("First Name", 120);
             clientList.Columns.Add("Last Name", 120);
-            clientList.Columns.Add("Email", 175);  
-            PopulateClientList();         
+            clientList.Columns.Add("Email", 175);
+            PopulateClientList();
+            _loadForm.Hide();
         }
 
+        public async void PopulateClientList()
         /// <summary>
         /// Populate client list with clients
         /// </summary>
-        public void PopulateClientList()
+        public async void PopulateClientList()
         {
             clientList.Items.Clear();
-            var clients = _clientEngine.GetClients().OrderBy(c => c.FirstName).ToList();
+            var clients = await Task.Run(() => _clientEngine.GetClients().OrderBy(c => c.FirstName).ToList());
             var clientListItems = clients.Select(clientItem => new ListViewItem { 
                 Tag = clientItem,
                 Text = clientItem.FirstName,
@@ -108,25 +113,23 @@ namespace PublicApiApp.Forms
         /// <summary>
         /// Add client to class button click
         /// </summary>
-        private void addClientToClass_Click(object sender, EventArgs e)
+        private async void addClientToClass_Click(object sender, EventArgs e)
         {
             if (clientList.SelectedItems.Count == 0)
             {
-                return;
+                Cursor.Current = Cursors.WaitCursor;
+                var selectedClient = clientList.SelectedItems[0].Tag as Client;
+                if (selectedClient?.ID == null)
+                {
+                    ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
+                }
+
+                _loadForm.Show();
+                ClassForm form = await Task.Run(() => new ClassForm(selectedClient.ID));
+                _loadForm.Hide();
+                form.Show();
+                Cursor.Current = Cursors.Default;
             }
-
-            Cursor.Current = Cursors.WaitCursor;
-
-            var selectedClient = clientList.SelectedItems[0].Tag as Client;
-            if (selectedClient?.ID == null)
-            {
-                ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
-                return;
-            }
-
-            new ClassForm(selectedClient).Show();
-
-            Cursor.Current = Cursors.Default;
         }
 
         /// <summary>

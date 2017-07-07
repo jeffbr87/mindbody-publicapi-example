@@ -1,4 +1,6 @@
-﻿namespace PublicApiApp.Forms
+﻿using System;
+
+namespace PublicApiApp.Forms
 {
     partial class ClassForm
     {
@@ -31,17 +33,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClassForm));
             this.label1 = new System.Windows.Forms.Label();
             this.ClassListControl = new System.Windows.Forms.ListView();
+            this.ClassIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ClassNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ClassStartHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ClassEndHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ClassCapacityHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AddClientToClassButton = new System.Windows.Forms.Button();
             this.ClientServicesListControl = new System.Windows.Forms.ComboBox();
             this.dateFilterControl = new System.Windows.Forms.DateTimePicker();
             this.textFilterControl = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ClassIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ClassNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ClassStartHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ClassEndHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ClassCapacityHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label1
@@ -69,13 +71,13 @@
             this.ClassCapacityHeader});
             this.ClassListControl.FullRowSelect = true;
             this.ClassListControl.GridLines = true;
-            this.ClassListControl.Location = new System.Drawing.Point(9, 102);
+            this.ClassListControl.Location = new System.Drawing.Point(9, 77);
             this.ClassListControl.Margin = new System.Windows.Forms.Padding(2);
             this.ClassListControl.MultiSelect = false;
             this.ClassListControl.Name = "ClassListControl";
             this.ClassListControl.OwnerDraw = true;
             this.ClassListControl.ShowGroups = false;
-            this.ClassListControl.Size = new System.Drawing.Size(698, 356);
+            this.ClassListControl.Size = new System.Drawing.Size(698, 371);
             this.ClassListControl.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.ClassListControl.TabIndex = 2;
             this.ClassListControl.UseCompatibleStateImageBehavior = false;
@@ -84,63 +86,6 @@
             this.ClassListControl.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.ClassListControl_DrawItem);
             this.ClassListControl.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.ClassListControl_DrawSubItem);
             this.ClassListControl.Resize += new System.EventHandler(this.ClassListControl_Resize);
-            // 
-            // AddClientToClassButton
-            // 
-            this.AddClientToClassButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddClientToClassButton.Location = new System.Drawing.Point(537, 463);
-            this.AddClientToClassButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
-            this.AddClientToClassButton.Name = "AddClientToClassButton";
-            this.AddClientToClassButton.Size = new System.Drawing.Size(170, 40);
-            this.AddClientToClassButton.TabIndex = 3;
-            this.AddClientToClassButton.Text = "Add Client to Class";
-            this.AddClientToClassButton.UseVisualStyleBackColor = true;
-            this.AddClientToClassButton.Click += new System.EventHandler(this.AddClientToClassButton_click);
-            // 
-            // ClientServicesListControl
-            // 
-            this.ClientServicesListControl.FormattingEnabled = true;
-            this.ClientServicesListControl.Location = new System.Drawing.Point(9, 43);
-            this.ClientServicesListControl.Name = "ClientServicesListControl";
-            this.ClientServicesListControl.Size = new System.Drawing.Size(453, 21);
-            this.ClientServicesListControl.TabIndex = 4;
-            // 
-            // dateFilterControl
-            // 
-            this.dateFilterControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateFilterControl.Location = new System.Drawing.Point(468, 44);
-            this.dateFilterControl.Name = "dateFilterControl";
-            this.dateFilterControl.Size = new System.Drawing.Size(239, 20);
-            this.dateFilterControl.TabIndex = 5;
-            this.dateFilterControl.ValueChanged += new System.EventHandler(this.dateFilterBox_ValueChanged);
-            // 
-            // textFilterControl
-            // 
-            this.textFilterControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textFilterControl.Location = new System.Drawing.Point(468, 74);
-            this.textFilterControl.Name = "textFilterControl";
-            this.textFilterControl.Size = new System.Drawing.Size(239, 20);
-            this.textFilterControl.TabIndex = 6;
-            this.textFilterControl.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(387, 77);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Filter by name:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(156, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Client\'s Service Pricing Options:";
             // 
             // ClassIdHeader
             // 
@@ -165,6 +110,66 @@
             // ClassCapacityHeader
             // 
             this.ClassCapacityHeader.Text = "Capacity";
+            // 
+            // AddClientToClassButton
+            // 
+            this.AddClientToClassButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddClientToClassButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.AddClientToClassButton.Location = new System.Drawing.Point(537, 462);
+            this.AddClientToClassButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
+            this.AddClientToClassButton.Name = "AddClientToClassButton";
+            this.AddClientToClassButton.Size = new System.Drawing.Size(170, 40);
+            this.AddClientToClassButton.TabIndex = 3;
+            this.AddClientToClassButton.Text = "Add Client to Class";
+            this.AddClientToClassButton.UseVisualStyleBackColor = false;
+            this.AddClientToClassButton.Click += new System.EventHandler(this.AddClientToClassButton_click);
+            // 
+            // ClientServicesListControl
+            // 
+            this.ClientServicesListControl.FormattingEnabled = true;
+            this.ClientServicesListControl.Location = new System.Drawing.Point(9, 43);
+            this.ClientServicesListControl.Name = "ClientServicesListControl";
+            this.ClientServicesListControl.Size = new System.Drawing.Size(367, 21);
+            this.ClientServicesListControl.TabIndex = 4;
+            // 
+            // dateFilterControl
+            // 
+            this.dateFilterControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateFilterControl.Location = new System.Drawing.Point(468, 17);
+            this.dateFilterControl.MinDate = new System.DateTime(2017, 7, 7, 0, 0, 0, 0);
+            this.dateFilterControl.Name = "dateFilterControl";
+            this.dateFilterControl.Size = new System.Drawing.Size(239, 20);
+            this.dateFilterControl.TabIndex = 5;
+            this.dateFilterControl.Visible = false;
+            this.dateFilterControl.ValueChanged += new System.EventHandler(this.dateFilterBox_ValueChanged);
+            // 
+            // textFilterControl
+            // 
+            this.textFilterControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textFilterControl.Location = new System.Drawing.Point(468, 44);
+            this.textFilterControl.Name = "textFilterControl";
+            this.textFilterControl.Size = new System.Drawing.Size(239, 20);
+            this.textFilterControl.TabIndex = 6;
+            this.textFilterControl.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(387, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Filter by name:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(156, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Client\'s Service Pricing Options:";
             // 
             // ClassForm
             // 
