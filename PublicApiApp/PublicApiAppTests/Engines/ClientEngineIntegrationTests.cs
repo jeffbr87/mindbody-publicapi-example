@@ -18,14 +18,14 @@ namespace PublicApiAppTests.Engines
         public void GetClientServicesTest()
         {
             ClientEngine clientEngine = new ClientEngine();
-            var result = clientEngine.GetClientServices("100014811", DateTime.Today);
+            clientEngine.GetClientServices("100014811", DateTime.Today);
         }
 
         [TestMethod]
         public void GetClientScheduleTest()
         {
             ClientEngine clientEngine = new ClientEngine();
-            var result = clientEngine.GetClientSchedule("100014811", DateTime.Parse("2017-02-01"));
+            clientEngine.GetClientSchedule("100014811", DateTime.Parse("2017-02-01"));
         }
     }
 }

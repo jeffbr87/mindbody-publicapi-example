@@ -64,14 +64,14 @@ namespace PublicApiAppTests.Repositories
         public void GetClientServicesTest()
         {
             var clientRepository = new ClientRepository();
-            var results = clientRepository.GetClientServices("100014811", DateTime.Today, DateTime.Today.AddDays(30));
+            clientRepository.GetClientServices("100014811", DateTime.Today, DateTime.Today.AddDays(30));
         }
 
         [TestMethod]
         public void GetClientScheduleTest()
         {
             var clientRepository = new ClientRepository();
-            var results = clientRepository.GetClientSchedule("100014811", DateTime.Parse("2017-02-01"), DateTime.Parse("2017-02-27"));
+            clientRepository.GetClientSchedule("100014811", DateTime.Parse("2017-02-01"), DateTime.Parse("2017-02-27"));
         }
         #endregion
     }

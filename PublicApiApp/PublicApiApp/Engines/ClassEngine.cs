@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using PublicApiApp.ClassService;
+using PublicApiApp.Helpers;
 using PublicApiApp.Repositories;
 
 namespace PublicApiApp.Engines
@@ -30,6 +31,41 @@ namespace PublicApiApp.Engines
             return _classRepository.GetClasses(clientId, startDate, endDate)
                 .Where(c => !c.IsEnrolled && c.IsAvailable.GetValueOrDefault() && c.MaxCapacity > c.TotalBooked)
                 .ToList();
+        }
+
+        /// <summary>
+        /// Adds a client to a class
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="classId"></param>
+        /// <param name="clientServiceId">Optional. If not specified, the API will select the service pricing option to use</param>
+        /// <returns></returns>
+        public bool AddClientToClass(string clientId, int classId, long? clientServiceId)
+        {
+            if (string.IsNullOrWhiteSpace(clientId))
+            {
+                ErrorHelper.DisplayError(ErrorHelper.Severity.Error, "An unknown error occurred. Please re-select the client.");
+                return false;
+            }
+
+            // For whatever reason, get client services gives client service IDs that are nullable longs,
+            // and add client to class takes nullable ints. HOT DERPAGE
+            int? clientServiceIdInt;
+            try
+            {
+                clientServiceIdInt = clientServiceId.HasValue ? Convert.ToInt32(clientServiceId) : (int?) null;
+            }
+            catch (OverflowException)
+            {
+                clientServiceIdInt = null;
+            }
+
+            return _classRepository.AddClientToClass(new AddClientsToClassesRequest
+            {
+                ClientIDs = new[] {clientId},
+                ClassIDs = new[] {classId},
+                ClientServiceID = clientServiceIdInt
+            });
         }
     }
 }

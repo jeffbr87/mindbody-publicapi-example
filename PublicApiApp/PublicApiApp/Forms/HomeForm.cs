@@ -45,18 +45,23 @@ namespace PublicApiApp.Forms
 
             //Client list view setup
             clientList.View = View.Details;
-            clientList.Clear();
             clientList.Scrollable = true;
             clientList.FullRowSelect = true;
             clientList.MultiSelect = false;
             clientList.GridLines = true;
             clientList.Columns.Add("First Name", 100);
             clientList.Columns.Add("Last Name", 100);
-            clientList.Columns.Add("Email", 200);
+            clientList.Columns.Add("Email", 200);  
+            PopulateClientList();         
+        }
+
+        public void PopulateClientList()
+        {
+            clientList.Items.Clear();
             _clients = _clientEngine.GetClients().OrderBy(c => c.FirstName).ToList();
             foreach (var client in _clients)
             {
-                ListViewItem item = new ListViewItem(new []{ client.FirstName, client.LastName, client.Email, client.ID });
+                ListViewItem item = new ListViewItem(new[] { client.FirstName, client.LastName, client.Email, client.ID });
                 clientList.Items.Add(item);
             }
         }

@@ -81,6 +81,7 @@
       <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Mappers\ClassMapper.cs" />
+    <Compile Include="Models\ClientServiceItem.cs" />
     <Compile Include="Mappers\VisitMapper.cs" />
     <Compile Include="Models\SimpleClass.cs" />
     <Compile Include="Models\SimpleVisit.cs" />

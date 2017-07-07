@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PublicApiApp.Models
 {
@@ -13,5 +9,7 @@ namespace PublicApiApp.Models
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         public int AvailableSlots { get; set; }
+
+        public override string ToString() => $"{Name} - {StartDateTime} to {EndDateTime}";
     }
 }

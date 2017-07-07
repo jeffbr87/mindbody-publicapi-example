@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PublicApiApp.ClientService;
+﻿using PublicApiApp.ClientService;
 using PublicApiApp.Constants;
 
 namespace PublicApiApp.Services
@@ -15,7 +10,7 @@ namespace PublicApiApp.Services
             return new ClientServiceWrapper {Url = CServiceEndpoints.ClientService};
         }
 
-        public ClientService.SourceCredentials GetSourceCredentials()
+        public SourceCredentials GetSourceCredentials()
         {
             return new SourceCredentials
             {
