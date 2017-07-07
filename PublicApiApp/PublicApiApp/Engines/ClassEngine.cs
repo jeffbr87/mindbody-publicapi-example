@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using PublicApiApp.ClassService;
 using PublicApiApp.Helpers;
 using PublicApiApp.Repositories;
@@ -10,6 +11,21 @@ namespace PublicApiApp.Engines
     public class ClassEngine
     {
         private readonly ClassRepository _classRepository = new ClassRepository();
+
+        public Task<IList<Class>> GetClassesAsync(string clientId)
+        {
+            return new Task<IList<Class>>(() => GetClasses(clientId));
+        }
+
+        public Task<IList<Class>> GetClassesAsync(string clientId, DateTime startDate)
+        {
+            return new Task<IList<Class>>(() => GetClasses(clientId, startDate));
+        }
+
+        public Task<bool> AddClientToClassAsync(string clientId, int classId, long? clientServiceId)
+        {
+            return new Task<bool>(() => AddClientToClass(clientId, classId, clientServiceId));
+        }
 
         public IList<Class> GetClasses(string clientId)
         {
@@ -26,7 +42,7 @@ namespace PublicApiApp.Engines
             return GetClasses(clientId, startDate, until);
         }
 
-        public IList<Class> GetClasses(string clientId, DateTime startDate, DateTime endDate)
+        private IList<Class> GetClasses(string clientId, DateTime startDate, DateTime endDate)
         {
             return _classRepository.GetClasses(clientId, startDate, endDate)
                 .Where(c => !c.IsEnrolled && c.IsAvailable.GetValueOrDefault() && c.MaxCapacity > c.TotalBooked)
