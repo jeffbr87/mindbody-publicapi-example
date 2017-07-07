@@ -12,7 +12,7 @@ namespace PublicApiApp.Forms
         private readonly ClientEngine _clientEngine = new ClientEngine();
         private readonly SalesEngine _salesEngine = new SalesEngine();
 
-        List<Client> clients = new List<Client>();
+        List<Client> _clients = new List<Client>();
 
         public HomeForm()
         {
@@ -22,14 +22,9 @@ namespace PublicApiApp.Forms
         private void getClientsAndClasses_Click(object sender, EventArgs e)
         {
 
-        }
+        }     
 
-        private void addClient_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void HomeForm_Load(object sender, EventArgs e)
+        public void HomeForm_Load(object sender, EventArgs e)
         {
             //Sales
             var sales = _salesEngine.GetSales(DateTime.Now.Date, DateTime.Now);
@@ -56,11 +51,17 @@ namespace PublicApiApp.Forms
             clientList.GridLines = true;
             clientList.Columns.Add("First Name", 100);
             clientList.Columns.Add("Last Name", 100);
-            clientList.Columns.Add("Email", 100);
-            clients = _clientEngine.GetClients().ToList();
-            foreach (var client in clients)
+            clientList.Columns.Add("Email", 100);  
+            PopulateClientList();         
+        }
+
+        public void PopulateClientList()
+        {
+            clientList.Items.Clear();
+            _clients = _clientEngine.GetClients().OrderBy(c => c.FirstName).ToList();
+            foreach (var client in _clients)
             {
-                ListViewItem item = new ListViewItem(new []{ client.FirstName, client.LastName, client.Email, client.ID });
+                ListViewItem item = new ListViewItem(new[] { client.FirstName, client.LastName, client.Email, client.ID });
                 clientList.Items.Add(item);
             }
         }
@@ -93,12 +94,18 @@ namespace PublicApiApp.Forms
             }
         }
 
+        private void addClient_Click(object sender, EventArgs e)
+        {
+            var updateFrm = new AddOrUpdateForm(_clientEngine, this);
+            updateFrm.Show();
+        }
+
         private void updateClient_Click(object sender, EventArgs e)
         {
             var selectedClient = clientList.SelectedItems[0];
             var clientId = selectedClient.SubItems[3].Text;           
-            var client = clients.Single(c => c.ID == clientId);
-            var updateFrm = new AddOrUpdateForm(client, _clientEngine);
+            var client = _clients.Single(c => c.ID == clientId);
+            var updateFrm = new AddOrUpdateForm(client, _clientEngine, this);
             updateFrm.Show();
         }
 
