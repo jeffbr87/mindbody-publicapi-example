@@ -13,7 +13,7 @@ namespace PublicApiApp.Forms
     {
         private readonly ClientEngine _clientEngine = new ClientEngine();
         private readonly SalesEngine _salesEngine = new SalesEngine();
-        private LoadingForm _loadForm = new LoadingForm();
+        private readonly LoadingForm _loadForm = new LoadingForm();
 
         /// <summary>
         /// Constructor
@@ -60,8 +60,7 @@ namespace PublicApiApp.Forms
             PopulateClientList();
             _loadForm.Hide();
         }
-
-        public async void PopulateClientList()
+        
         /// <summary>
         /// Populate client list with clients
         /// </summary>
@@ -115,21 +114,22 @@ namespace PublicApiApp.Forms
         /// </summary>
         private async void addClientToClass_Click(object sender, EventArgs e)
         {
-            if (clientList.SelectedItems.Count == 0)
+            if (clientList.SelectedItems.Count != 0)
             {
-                Cursor.Current = Cursors.WaitCursor;
-                var selectedClient = clientList.SelectedItems[0].Tag as Client;
-                if (selectedClient?.ID == null)
-                {
-                    ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
-                }
-
-                _loadForm.Show();
-                ClassForm form = await Task.Run(() => new ClassForm(selectedClient.ID));
-                _loadForm.Hide();
-                form.Show();
-                Cursor.Current = Cursors.Default;
+                return;
             }
+            Cursor.Current = Cursors.WaitCursor;
+            var selectedClient = clientList.SelectedItems[0].Tag as Client;
+            if (selectedClient?.ID == null)
+            {
+                ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
+            }
+
+            _loadForm.Show();
+            var form = await Task.Run(() => new ClassForm(selectedClient));
+            _loadForm.Hide();
+            form.Show();
+            Cursor.Current = Cursors.Default;
         }
 
         /// <summary>
