@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Schema;
 using PublicApiApp.ClientService;
 using PublicApiApp.Repositories;
 using PublicApiApp.Extensions;
