@@ -48,6 +48,7 @@
             // 
             // addClient
             // 
+            this.addClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addClient.Location = new System.Drawing.Point(350, 75);
             this.addClient.Name = "addClient";
             this.addClient.Size = new System.Drawing.Size(102, 23);
@@ -58,7 +59,11 @@
             // 
             // clientList
             // 
+            this.clientList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.clientList.Location = new System.Drawing.Point(13, 104);
+            this.clientList.MinimumSize = new System.Drawing.Size(439, 191);
             this.clientList.Name = "clientList";
             this.clientList.Size = new System.Drawing.Size(439, 191);
             this.clientList.TabIndex = 1;
@@ -69,7 +74,7 @@
             // 
             this.studioName.AutoSize = true;
             this.studioName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.studioName.Location = new System.Drawing.Point(12, 9);
+            this.studioName.Location = new System.Drawing.Point(12, 16);
             this.studioName.Name = "studioName";
             this.studioName.Size = new System.Drawing.Size(147, 25);
             this.studioName.TabIndex = 2;
@@ -86,6 +91,7 @@
             // 
             // addClientToClass
             // 
+            this.addClientToClass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.addClientToClass.Location = new System.Drawing.Point(13, 387);
             this.addClientToClass.Name = "addClientToClass";
             this.addClientToClass.Size = new System.Drawing.Size(196, 23);
@@ -96,6 +102,7 @@
             // 
             // updateClient
             // 
+            this.updateClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.updateClient.Location = new System.Drawing.Point(13, 329);
             this.updateClient.Name = "updateClient";
             this.updateClient.Size = new System.Drawing.Size(196, 23);
@@ -106,6 +113,7 @@
             // 
             // getClientSchedule
             // 
+            this.getClientSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.getClientSchedule.Location = new System.Drawing.Point(13, 358);
             this.getClientSchedule.Name = "getClientSchedule";
             this.getClientSchedule.Size = new System.Drawing.Size(196, 23);
@@ -116,6 +124,7 @@
             // 
             // withSelectedClientLabel
             // 
+            this.withSelectedClientLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.withSelectedClientLabel.AutoSize = true;
             this.withSelectedClientLabel.Location = new System.Drawing.Point(13, 309);
             this.withSelectedClientLabel.Name = "withSelectedClientLabel";
@@ -125,6 +134,7 @@
             // 
             // enso
             // 
+            this.enso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.enso.Image = ((System.Drawing.Image)(resources.GetObject("enso.Image")));
             this.enso.Location = new System.Drawing.Point(306, 309);
             this.enso.Name = "enso";
@@ -163,14 +173,19 @@
             // 
             // searchBox
             // 
+            this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.searchBox.Location = new System.Drawing.Point(217, 76);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(127, 21);
             this.searchBox.TabIndex = 19;
+            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged_1);
             // 
             // searchLabel
             // 
+            this.searchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.searchLabel.AutoSize = true;
             this.searchLabel.Location = new System.Drawing.Point(173, 80);
             this.searchLabel.Name = "searchLabel";
@@ -198,6 +213,7 @@
             this.Controls.Add(this.addClient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(480, 463);
             this.Name = "HomeForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "MINDBODY 0.0.1";

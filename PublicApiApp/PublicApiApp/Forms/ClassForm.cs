@@ -32,12 +32,15 @@ namespace PublicApiApp.Forms
             PopulateClientServices(DateTime.Now);
 
             _classes = _classEngine.GetClasses(clientId).ToList();
-            var classListViewItems = _classes.Select(classItem => new ListViewItem
+            var classListViewItems = _classes
+                .Where(classItem => classItem.ID.HasValue)
+                .Select(classItem => new ListViewItem
             {
                 Tag = classItem,
-                Text = classItem.ClassDescription.Name,
+                Text = classItem.ID.Value.ToString(),
                 SubItems =
                 {
+                    classItem.ClassDescription.Name,
                     classItem.StartDateTime.ToString(),
                     classItem.EndDateTime.ToString(),
                     (classItem.MaxCapacity - classItem.TotalBooked).ToString()

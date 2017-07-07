@@ -17,12 +17,7 @@ namespace PublicApiApp.Forms
         public HomeForm()
         {
             InitializeComponent();
-        }
-
-        private void getClientsAndClasses_Click(object sender, EventArgs e)
-        {
-
-        }     
+        }   
 
         public void HomeForm_Load(object sender, EventArgs e)
         {            
@@ -107,7 +102,7 @@ namespace PublicApiApp.Forms
                 {
                     ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
                 }
-                ClassForm form = new ClassForm(selectedClient.ID);
+                var form = new ClassForm(selectedClient.ID);
                 form.Show();
                 Cursor.Current = Cursors.Default;
             }
