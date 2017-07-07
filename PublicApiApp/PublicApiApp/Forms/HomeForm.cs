@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using PublicApiApp.ClientService;
 using PublicApiApp.Engines;
+using PublicApiApp.Helpers;
 
 namespace PublicApiApp.Forms
 {
@@ -12,8 +13,6 @@ namespace PublicApiApp.Forms
     {
         private readonly ClientEngine _clientEngine = new ClientEngine();
         private readonly SalesEngine _salesEngine = new SalesEngine();
-
-        List<Client> _clients = new List<Client>();
 
         public HomeForm()
         {
@@ -26,7 +25,7 @@ namespace PublicApiApp.Forms
         }     
 
         public void HomeForm_Load(object sender, EventArgs e)
-        {
+        {            
             //Sales
             var sales = _salesEngine.GetSales(DateTime.Now.Date, DateTime.Now);
             decimal totalSales = 0;
@@ -64,12 +63,19 @@ namespace PublicApiApp.Forms
         public void PopulateClientList()
         {
             clientList.Items.Clear();
-            _clients = _clientEngine.GetClients().OrderBy(c => c.FirstName).ToList();
-            foreach (var client in _clients)
-            {
-                ListViewItem item = new ListViewItem(new[] { client.FirstName, client.LastName, client.Email, client.ID });
-                clientList.Items.Add(item);
-            }
+            var clients = _clientEngine.GetClients().OrderBy(c => c.FirstName).ToList();
+            var clientListItems = clients.Select(clientItem => new ListViewItem { 
+                Tag = clientItem,
+                Text = clientItem.FirstName,
+                SubItems =
+                {
+                    clientItem.LastName?.ToString() ?? "",
+                    clientItem.Email?.ToString() ?? "",
+                    clientItem.ID?.ToString() ?? ""
+                }
+            }).ToArray();
+           clientList.Items.AddRange(clientListItems);         
+           studioName.Text = clients.FirstOrDefault(c => c.HomeLocation?.Name != null)?.HomeLocation.Name ?? "My Studio";
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
@@ -95,8 +101,15 @@ namespace PublicApiApp.Forms
         {
             if (clientList.SelectedItems.Count > 0)
             {
-                ClassForm form = new ClassForm(clientList.SelectedItems[0].SubItems[3].Text);
+                Cursor.Current = Cursors.WaitCursor;
+                var selectedClient = clientList.SelectedItems[0].Tag as Client;
+                if (selectedClient?.ID == null)
+                {
+                    ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
+                }
+                ClassForm form = new ClassForm(selectedClient.ID);
                 form.Show();
+                Cursor.Current = Cursors.Default;
             }
         }
 
@@ -108,10 +121,12 @@ namespace PublicApiApp.Forms
 
         private void updateClient_Click(object sender, EventArgs e)
         {
-            var selectedClient = clientList.SelectedItems[0];
-            var clientId = selectedClient.SubItems[3].Text;           
-            var client = _clients.Single(c => c.ID == clientId);
-            var updateFrm = new AddOrUpdateForm(client, _clientEngine, this);
+            var selectedClient = clientList.SelectedItems[0].Tag as Client;
+            if (selectedClient?.ID == null)
+            {
+                ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
+            }
+            var updateFrm = new AddOrUpdateForm(selectedClient, _clientEngine, this);
             updateFrm.Show();
         }
 
@@ -119,9 +134,16 @@ namespace PublicApiApp.Forms
         {
             if (clientList.SelectedItems.Count > 0)
             {
-                ScheduleForm form = new ScheduleForm(clientList.SelectedItems[0].SubItems[3].Text,
-                    clientList.SelectedItems[0].SubItems[0].Text + " " + clientList.SelectedItems[0].SubItems[1].Text);
+                Cursor.Current = Cursors.WaitCursor;
+                var selectedClient = clientList.SelectedItems[0].Tag as Client;
+                if (selectedClient?.ID == null)
+                {
+                    ErrorHelper.DisplayError(ErrorHelper.Severity.Warning, "Please select a client");
+                }
+                ScheduleForm form = new ScheduleForm(selectedClient.ID,
+                    selectedClient.FirstName + " " + selectedClient.LastName);
                 form.Show();
+                Cursor.Current = Cursors.Default;
             }
         }
     }

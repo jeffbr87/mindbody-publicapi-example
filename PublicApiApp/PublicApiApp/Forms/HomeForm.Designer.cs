@@ -197,6 +197,7 @@
             this.Controls.Add(this.clientList);
             this.Controls.Add(this.addClient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomeForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "MINDBODY 0.0.1";
