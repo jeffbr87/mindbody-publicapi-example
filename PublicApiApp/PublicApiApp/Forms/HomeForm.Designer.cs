@@ -180,7 +180,7 @@
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(127, 21);
             this.searchBox.TabIndex = 19;
-            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged_1);
+            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
             // 
             // searchLabel
             // 
